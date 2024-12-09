@@ -1,0 +1,61 @@
+general:
+  project_name: coco_instance_seg
+  model_type: yolo_v8_seg
+  model_path: path/to/stm32-hotspot/ultralytics/yolov8n-seg_full_integer_quant_256.tflite
+  logs_dir: logs
+  display_figures: true
+  global_seed: 123
+  gpu_memory_limit: 4
+
+operation_mode: prediction
+
+dataset:
+  name: COCO
+  classes_file_path : ../datasets/coco_classes.txt
+  class_names: 
+
+preprocessing:
+  rescaling:
+    scale: 1/255.0
+    offset: 0
+  resizing:
+    interpolation: bilinear
+    aspect_ratio: fit
+  color_mode: rgb
+
+postprocessing:
+  confidence_thresh: 0.6
+  IoU_eval_thresh: 0.4
+  max_detection_boxes: 100
+
+prediction:
+  test_files_path: ../datasets/coco/images
+
+tools:
+  stedgeai:
+    version: 10.0.0
+    optimization: balanced
+    on_cloud: true
+    path_to_stedgeai: C:/Users/<XXXXX>/STM32Cube/Repository/Packs/STMicroelectronics/X-CUBE-AI/<*.*.*>/Utilities/windows/stedgeai.exe
+  path_to_cubeIDE: C:/ST/STM32CubeIDE_<*.*.*>/STM32CubeIDE/stm32cubeide.exe
+
+benchmarking:
+  board: STM32MP257F-EV1
+
+deployment:
+  c_project_path: 
+  IDE: 
+  verbosity: 
+  hardware_setup:
+    serie: 
+    board: 
+    input: 
+    output: 
+    label_file_path:
+
+mlflow:
+  uri: ./experiments_outputs/mlruns
+
+hydra:
+   run:
+      dir: ./experiments_outputs/${now:%Y_%m_%d_%H_%M_%S}

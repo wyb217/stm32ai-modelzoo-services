@@ -1,0 +1,38 @@
+general:
+  model_path: ../../../model_zoo/semantic_segmentation/deeplab_v3/ST_pretrainedmodel_public_dataset/coco_2017_pascal_voc_2012/deeplab_v3_mobilenetv2_05_16_512_fft/deeplab_v3_mobilenetv2_05_16_512_fft.h5
+operation_mode: quantization
+
+dataset:
+  name: pascal_voc
+  class_names: ["background", "aeroplane", "bicycle", "bird", "boat", "bottle", "bus",
+                "car", "cat", "chair", "cow", "dining table", "dog", "horse", "motorbike",
+                "person", "potted plant", "sheep", "sofa", "train", "tv/monitor"]
+
+  quantization_path: ../datasets/VOC2012/JPEGImages
+  quantization_masks_path: ../datasets/VOC2012/SegmentationClass
+  quantization_files_path: ../datasets/VOC2012/ImageSets/Segmentation/onnx_quant.txt
+
+preprocessing:
+  rescaling: { scale: 1/255, offset: 0 }
+  resizing:
+    aspect_ratio: fit
+    interpolation: nearest
+  color_mode: rgb
+
+quantization:
+  quantizer: onnx_quantizer
+  target_opset: 17
+  granularity: per_channel
+  quantization_type: PTQ
+  quantization_input_type: float 
+  quantization_output_type: float
+  extra_options: calib_moving_average
+  export_dir: quantized_models
+
+
+mlflow:
+  uri: ./experiments_outputs/mlruns
+
+hydra:
+  run:
+    dir: ./experiments_outputs/${now:%Y_%m_%d_%H_%M_%S}

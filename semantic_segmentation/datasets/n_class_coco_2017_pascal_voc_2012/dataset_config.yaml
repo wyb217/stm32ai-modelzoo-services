@@ -1,0 +1,15 @@
+image_dir: '../COCO2017_VOC2012/JPEGImages'
+mask_dir: '../COCO2017_VOC2012/SegmentationClassAug'
+train_ids_file: '../COCO2017_VOC2012/trainaug.txt'
+val_ids_file: '../COCO2017_VOC2012/val.txt'
+
+
+ 
+output_base_dir: "../"
+dataset_name : person_COCO2017_VOC2012
+interesting_classes:  ["background", "person"]
+
+pixel_threshold: 800  # Number of pixels threshold for interesting classes
+
+
+

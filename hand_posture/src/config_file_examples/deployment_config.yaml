@@ -1,0 +1,35 @@
+general:
+   model_path: ../../../model_zoo/hand_posture/CNN2D_ST_HandPosture/ST_pretrainedmodel_custom_dataset/ST_VL53L8CX_handposture_dataset/CNN2D_ST_HandPosture_8classes/CNN2D_ST_HandPosture_8classes.h5     # Path to the model file to deploy
+
+operation_mode: deployment
+
+dataset:
+   class_names: [None, Like, Dislike, FlatHand, Fist, Love, BreakTime, CrossHands]
+
+preprocessing: # Mandatory
+  Max_distance: 400 # Mandatory
+  Min_distance: 100 # Mandatory
+  Background_distance:  120 # Mandatory
+
+tools:
+  stedgeai:
+    version: 10.0.0
+    optimization: balanced
+    on_cloud: True
+    path_to_stedgeai: C:/Users/<XXXXX>/STM32Cube/Repository/Packs/STMicroelectronics/X-CUBE-AI/<*.*.*>/Utilities/windows/stedgeai.exe
+  path_to_cubeIDE: C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/stm32cubeide.exe
+
+deployment:
+  c_project_path: ../../application_code/hand_posture/STM32F4/
+  IDE: GCC
+  verbosity: 1
+  hardware_setup:
+    serie: STM32F4
+    board: NUCLEO-F401RE
+
+mlflow:
+  uri: ./experiments_outputs/mlruns
+
+hydra:
+  run:
+    dir: ./experiments_outputs/${now:%Y_%m_%d_%H_%M_%S}

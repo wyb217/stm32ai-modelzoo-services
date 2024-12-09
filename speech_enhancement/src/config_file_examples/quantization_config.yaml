@@ -1,0 +1,92 @@
+general:
+  project_name: speech_enhancement_project
+  logs_dir: logs
+  saved_models_dir: saved_models 
+  gpu_memory_limit: 0.5 # Fraction of GPU's memory to use.
+  display_figures: True # Set to True to display figures. Figures are saved even if set to False.
+
+operation_mode: quantization
+model:
+  model_type: STFTTCNN # For training
+  state_dict_path: # For training and evaluating torch models
+  onnx_path: path/to/your/model.onnx # For quantization, evaluation, benchmarking and deployment only
+
+model_specific:
+  # Parameters specific to your model type, e.g. n_blocks, tcn_latent_dim for STFT-TCNN
+  n_blocks: 2
+  num_layers: 3
+  in_channels: 257
+  tcn_latent_dim: 512
+  init_dilation: 2
+  mask_activation: "sigmoid"
+
+dataset:
+  name: valentini # Or "custom"
+  root_folder: /local/datasets/Valentini # Root folder of dataset
+  n_speakers: 56 # For Valentini, 28 or 56 speaker dataset. Does nothing if name is "custom"
+  file_extension: '.wav' # Extension of audio files. Valentini dataset uses .wav
+
+  # For the following parameters, leave empty to include all samples.
+  # You can set them to a specific n° of samples (integer), 
+  # or a fraction (float) of their respective sets.
+
+  num_training_samples:  # N° of samples or fraction of training set to include in training set
+  num_validation_samples: 100 # N° of samples or fraction of training set to include in validation set.
+  num_test_samples:  # N° of samples or fraction of test set to include in test set
+  shuffle: True # If True, training dataset is shuffled each epoch
+  random_seed: 42 # Random seed used for sampling. If left empty, sampling is not seeded.
+
+  # The following parameters are to be used for custom datasets. 
+  # You can leave them empty if "name" is "valentini", and the default paths will be used.
+  clean_train_files_path:
+  clean_test_files_path:
+  noisy_train_files_path:
+  noisy_test_files_path:
+
+preprocessing:
+  pipeline_type: LibrosaSpecPipeline # Do not change if unsure.
+  peak_normalize: False
+  sample_rate: 16000
+  n_fft: 512
+  hop_length: 160
+  win_length: 400
+  window: hann
+  center: True
+  power: 1
+
+quantization:
+  # N° of samples or fraction of training set to include in quantization set.
+  # Leave empty to use the whole training set.
+  num_quantization_samples: 100
+  random_seed: 
+
+  # Use the following parameters if using a quantization set different from the training set.
+  # If left empty, the noisy files from the training dataset specified in the dataset section will be used.
+  noisy_quantization_files_path:
+
+  # STEDGEAI only accepts models with static input shapes. 
+  # The model zoo will output two models : one with dynamic and one with static input shape.
+  # E.g, if the dynamic input shape model has input shape[?, 257, ?] 
+  # The static shape model will have input shape [1, 257, 40] 
+  # if static_sequence_length is 40. 
+  static_sequence_length: 40 
+  static_axis_name: "seq_len"
+  
+  # The following parameters are passed directly to ONNXruntime's quantize_static function
+  per_channel: True # 
+  calibration_method: "MinMax" # Calibration method of ONNX quantizer
+  op_types_to_quantize: ["Add", "Conv", "Relu"] # Op types to quantize. Leave empty to quantize all defaults for the ONNX quantizer.
+  reduce_range: False
+  extra_options: {"CalibMovingAverage" : True} # Add extra quantizer options in this dict.
+  
+mlflow:
+  uri: ./experiment_outputs/mlruns
+
+hydra:
+  run:
+    dir: ./experiment_outputs/${now:%Y_%m_%d_%H_%M_%S}
+  
+
+
+
+

@@ -1,0 +1,3 @@
+masks_dir: '../VOC2012_train_val/SegmentationClassAug/'  # Update this path to the directory containing the masks
+val_file: '../VOC2012_train_val/ImageSets/Segmentation/val.txt'  # Path to the val.txt file containing validation IDs
+output_file: '../VOC2012_train_val/ImageSets/Segmentation/trainaug.txt' # Path to the output trainaug.txt file

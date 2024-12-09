@@ -1,0 +1,77 @@
+general:
+  project_name: speech_enhancement_project
+  logs_dir: logs
+  saved_models_dir: saved_models 
+  gpu_memory_limit: 0.5 # Fraction of GPU's memory to use.
+  display_figures: True # Set to True to display figures. Figures are saved even if set to False.
+
+operation_mode: evaluation
+model:
+  model_type: STFTTCNN # For training
+  state_dict_path: # For training and evaluating torch models
+  onnx_path: path/to/your/model.onnx # For quantization, evaluation, benchmarking and deployment only
+
+model_specific:
+  # Parameters specific to your model type, e.g. n_blocks, tcn_latent_dim for STFT-TCNN
+  n_blocks: 2
+  num_layers: 3
+  in_channels: 257
+  tcn_latent_dim: 512
+  init_dilation: 2
+  mask_activation: "sigmoid"
+
+dataset:
+  name: valentini # Or "custom"
+  root_folder: /local/datasets/Valentini # Root folder of dataset
+  n_speakers: 56 # For Valentini, 28 or 56 speaker dataset. Does nothing if name is "custom"
+  file_extension: '.wav' # Extension of audio files. Valentini dataset uses .wav
+
+  # For the following parameters, leave empty to include all samples.
+  # You can set them to a specific n° of samples (integer), 
+  # or a fraction (float) of their respective sets.
+
+  num_training_samples:  # N° of samples or fraction of training set to include in training set
+  num_validation_samples: 100 # N° of samples or fraction of training set to include in validation set.
+  num_test_samples:  # N° of samples or fraction of test set to include in test set
+  shuffle: True # If True, training dataset is shuffled each epoch
+  random_seed: 42 # Random seed used for sampling. If left empty, sampling is not seeded.
+
+  # The following parameters are to be used for custom datasets. 
+  # You can leave them empty if "name" is "valentini", and the default paths will be used.
+  clean_train_files_path:
+  clean_test_files_path:
+  noisy_train_files_path:
+  noisy_test_files_path:
+
+preprocessing:
+  pipeline_type: LibrosaSpecPipeline # Do not change if unsure.
+  peak_normalize: False
+  sample_rate: 16000
+  n_fft: 512
+  hop_length: 160
+  win_length: 400
+  window: hann
+  center: True
+  power: 1
+
+evaluation:
+  logs_path: eval_logs/ # Path to evaluation logs, appended to general.logs_dir
+  device: "cuda:0" # Only used when evaluating torch models.
+  # If evaluating models with a fixed sequence length axis length, set the following parameter
+  # to the length of the axis. E.g. if input shape is [1, 257, 20], set fixed_sequence_length to 20.
+  # If evaluating models with a dynamic sequence length axis, leave empty.
+  fixed_sequence_length: 
+
+  # NOTE: Params for ST AI runner will be here
+
+mlflow:
+  uri: ./experiment_outputs/mlruns
+
+hydra:
+  run:
+    dir: ./experiment_outputs/${now:%Y_%m_%d_%H_%M_%S}
+  
+
+
+
+

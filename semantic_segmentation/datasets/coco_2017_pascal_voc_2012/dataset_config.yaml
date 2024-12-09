@@ -1,0 +1,39 @@
+coco:
+  annotations_path: '../COCO2017/annotations/instances_train2017.json'
+  images_path: '../COCO2017/train2017/'
+
+pascal_voc:
+  images_path: '../VOC2012_train_val/JPEGImages/'
+  masks_path: '../VOC2012_train_val/SegmentationClassAug/'
+  txt_training_file: '../VOC2012_train_val/ImageSets/Segmentation/trainaug.txt'
+  txt_val_file: '../VOC2012_train_val/ImageSets/Segmentation/val.txt'
+
+output:
+  final_images_path: '../COCO2017_VOC2012/JPEGImages'
+  final_masks_path: '../COCO2017_VOC2012/SegmentationClassAug'
+  final_txt_training_file: '../COCO2017_VOC2012/trainaug.txt'
+  finat_txt_val_file: '../COCO2017_VOC2012/val.txt'
+
+smallest_annotation_area: 1000
+
+voc_categories:
+  - airplane
+  - bicycle
+  - bird
+  - boat
+  - bottle
+  - bus
+  - car
+  - cat
+  - chair
+  - cow
+  - dining table
+  - dog
+  - horse
+  - motorcycle
+  - person
+  - potted plant
+  - sheep
+  - couch
+  - train
+  - tv

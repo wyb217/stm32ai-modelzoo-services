@@ -1,0 +1,38 @@
+general:
+   model_path: ../../../model_zoo/semantic_segmentation/deeplab_v3/ST_pretrainedmodel_public_dataset/person_coco_2017_pascal_voc_2012/deeplab_v3_mobilenetv2_05_16_320/deeplab_v3_mobilenetv2_05_16_320_asppv2_qdq_int8.onnx
+   model_type: deeplab_v3
+
+operation_mode: deployment
+
+dataset:
+   name: pascal_voc_person
+   class_names: ['background','person']
+
+preprocessing:
+  resizing:
+    aspect_ratio: crop
+    interpolation: nearest
+  color_mode: rgb
+
+tools:
+   stedgeai:
+      version: 10.0.0
+      optimization: balanced
+      on_cloud: False
+      path_to_stedgeai: C:/Users/<XXXXX>/STM32Cube/Repository/Packs/STMicroelectronics/X-CUBE-AI/<*.*.*>/Utilities/windows/stedgeai.exe
+   path_to_cubeIDE: C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/stm32cubeide.exe
+
+deployment:
+   c_project_path: ../../application_code/semantic_segmentation/STM32N6/
+   IDE: GCC
+   verbosity: 1
+   hardware_setup:
+      serie: STM32N6
+      board: STM32N6570-DK #STM32H747I-DISCO, STM32N6570-DK
+
+mlflow:
+   uri: ./experiments_outputs/mlruns
+
+hydra:
+   run:
+      dir: ./experiments_outputs/${now:%Y_%m_%d_%H_%M_%S}

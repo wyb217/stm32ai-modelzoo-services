@@ -1,0 +1,46 @@
+general:
+  model_type: ssd_mobilenet_v2_fpnlite # 'st_ssd_mobilenet_v1', 'ssd_mobilenet_v2_fpnlite', 'tiny_yolo_v2', 'st_yolo_lc_v1', 'st_yolo_x', 'yolo_v8'
+  # path to a `.tflite` or `.onnx` file.
+  model_path: ../../../stm32ai-modelzoo/object_detection/ssd_mobilenet_v2_fpnlite/ST_pretrainedmodel_public_dataset/coco_2017_person/ssd_mobilenet_v2_fpnlite_035_192/ssd_mobilenet_v2_fpnlite_035_192_int8.tflite
+
+operation_mode: deployment
+
+dataset:
+  name: coco_2017_person
+  class_names: [person]
+
+preprocessing:
+  resizing:
+    interpolation: bilinear
+    aspect_ratio: crop
+  color_mode: rgb # rgb, bgr
+
+postprocessing:
+  confidence_thresh: 0.6
+  NMS_thresh: 0.5
+  IoU_eval_thresh: 0.4
+  yolo_anchors: # Only applicable for YoloV2
+  max_detection_boxes: 10
+
+tools:
+  stedgeai:
+    version: 10.0.0
+    optimization: balanced
+    on_cloud: False # Not Available For STM32N6
+    path_to_stedgeai: C:/Users/<XXXXX>/STM32Cube/Repository/Packs/STMicroelectronics/X-CUBE-AI/<*.*.*>/Utilities/windows/stedgeai.exe
+  path_to_cubeIDE: C:/ST/STM32CubeIDE_<*.*.*>/STM32CubeIDE/stm32cubeide.exe
+
+deployment:
+  c_project_path: ../../application_code/object_detection/STM32N6/
+  IDE: GCC
+  verbosity: 1
+  hardware_setup:
+    serie: STM32N6
+    board: STM32N6570-DK
+
+hydra:
+  run:
+    dir: ./experiments_outputs/${now:%Y_%m_%d_%H_%M_%S}
+
+mlflow:
+  uri: ./experiments_outputs/mlruns

@@ -1,0 +1,40 @@
+general:
+  model_path: ../onnx_models/yolov8_person.onnx
+  model_type: yolov8
+operation_mode: quantization
+
+dataset:
+  name: COCO_2017_person
+  class_names: [ person ]
+  quantization_path: ../datasets/COCO_2017_person/train
+  quantization_split: 0.002
+
+preprocessing:
+  rescaling: { scale: 1/255, offset: 0 }
+  resizing:
+    aspect_ratio: fit
+    interpolation: nearest
+  color_mode: rgb
+
+quantization:
+  quantizer: onnx_quantizer
+  target_opset: 17
+  granularity: per_channel #per_channel
+  quantization_type: PTQ
+  quantization_input_type: float 
+  quantization_output_type: float
+  export_dir: quantized_models
+
+postprocessing:
+  confidence_thresh: 0.6
+  NMS_thresh: 0.5
+  IoU_eval_thresh: 0.3
+  plot_metrics: True   # Plot precision versus recall curves. Default is False.
+  max_detection_boxes: 10
+
+mlflow:
+  uri: ./experiments_outputs/mlruns
+
+hydra:
+  run:
+    dir: ./experiments_outputs/${now:%Y_%m_%d_%H_%M_%S}

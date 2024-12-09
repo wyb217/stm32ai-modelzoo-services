@@ -1,0 +1,21 @@
+# You can relax some of the version requirements if you wish
+# or if running into install problems.
+# The only necessarary ones are numpy==1.26.4, scipy >=1.9.0 and onnx < 1.16.2, only if on Windows.
+numpy==1.26.4
+scipy>=1.9.0
+torch==2.5.1
+torchaudio==2.5.1
+librosa==0.10.2.post1
+pandas
+matplotlib
+einops
+pesq==0.0.4
+pystoi==0.4.1
+onnx<1.16.2 # For windows only, Linux can use any version
+onnxruntime==1.20.0
+tqdm
+mlflow==2.18.0
+hydra-core
+munch
+marshmallow==3.23.1
+scikit-learn==1.5.2
