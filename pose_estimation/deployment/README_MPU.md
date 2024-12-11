@@ -42,7 +42,7 @@ operation_mode: deployment
 ```
 
 In the `general` section, users must provide the path to their model file using the `model_path` attribute. This can be either a TensorFlow Lite model file with a `.tflite` filename extension (quantized model) or an ONNX model with a `.onnx` filename extension.
-In this example, the path to the Yolov8n-pose model is provided in the `model_path` parameter. Please check out the [pretrained models folder](../pretrained_models/README.md) for more pose estimation models' performances available in the [STM32 model zoo](https://github.com/STMicroelectronics/stm32ai-modelzoo/pose_estimation/).
+In this example, the path to the Yolov8n-pose model is provided in the `model_path` parameter. Please check out the [pretrained models folder](../pretrained_models/README.md) for more pose estimation models' performances available in the [STM32 model zoo](https://github.com/STMicroelectronics/stm32ai-modelzoo/tree/master/pose_estimation/).
 
 You must copy the `preprocessing` section to your own configuration file to ensure you have the correct preprocessing parameters.
 

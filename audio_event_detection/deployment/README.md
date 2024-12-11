@@ -47,7 +47,7 @@ This tutorial only describes enough settings for you to be able to deploy a pret
 In this tutorial, we will be deploying a pretrained model from the STM32 model zoo.
 Pretrained models informations can be found under the [pretrained_models](../pretrained_models/) folder. Each model has its own subfolder. Each of these subfolders has a copy of the configuration file used to train the model. You can copy the `preprocessing` and `feature_extraction` sections to your own configuration file, to ensure you have the correct preprocessing parameters.
 
-In this tutorial, we will deploy a quantized [Yamnet-256](https://github.com/STMicroelectronics/stm32ai-modelzoo/audio_event_detection/yamnet/ST_pretrainedmodel_public_dataset/esc10/yamnet_256_64x96_tl/yamnet_256_64x96_tl_int8.tflite) that has been trained on ESC-10 using transfer learning.
+In this tutorial, we will deploy a quantized [Yamnet-256](https://github.com/STMicroelectronics/stm32ai-modelzoo/blob/master/audio_event_detection/yamnet/ST_pretrainedmodel_public_dataset/esc10/yamnet_256_64x96_tl/yamnet_256_64x96_tl_int8.tflite) that has been trained on ESC-10 using transfer learning.
 
 <ul><details open><summary><a href="#2-1">2.1 Operation mode</a></summary><a id="2-1"></a>
 

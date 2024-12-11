@@ -4,8 +4,8 @@ The STM32 model zoo includes several models for hand posture recognition use cas
 
 - `ST_pretrainedmodel_custom_dataset` contains different hand posture models trained on ST custom datasets using our [training scripts](../src/config_file_examples/training_config.yaml). 
 
-**Feel free to explore the model zoo and get pre-trained models [here](https://github.com/STMicroelectronics/stm32ai-modelzoo/hand_posture/).**
+**Feel free to explore the model zoo and get pre-trained models [here](https://github.com/STMicroelectronics/stm32ai-modelzoo/tree/master/hand_posture/).**
 
 
 You can get footprints and performance information for each model following links below:
-- [CNN2D_ST_HandPosture](https://github.com/STMicroelectronics/stm32ai-modelzoo/hand_posture/CNN2D_ST_HandPosture/README.md)
+- [CNN2D_ST_HandPosture](https://github.com/STMicroelectronics/stm32ai-modelzoo/blob/master/hand_posture/CNN2D_ST_HandPosture/README.md)

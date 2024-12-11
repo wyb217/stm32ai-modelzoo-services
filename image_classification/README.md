@@ -40,7 +40,7 @@ The different values of the `operation_mode` attribute and the corresponding ope
 | `chain_eqeb`             | Sequentially: evaluation of a float model,  quantization, evaluation of quantized model, benchmarking of quantized model |
 | `chain_qd`               | Sequentially: quantization of a float model, deployment of quantized model |
 
-There is no model_type on the image classification use case, but [here](https://github.com/STMicroelectronics/stm32ai-modelzoo/image_classification/README.md) can be found the list of the available models.
+There is no model_type on the image classification use case, but [here](https://github.com/STMicroelectronics/stm32ai-modelzoo/blob/master/image_classification/README.md) can be found the list of the available models.
 
 ## You don't know where to start? You feel lost?
 Don't forget to follow our tuto below for a quick ramp up : 

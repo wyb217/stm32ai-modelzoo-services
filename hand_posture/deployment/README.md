@@ -35,7 +35,7 @@ Detailed instructions on installation are available in this [wiki article](https
 
 You can use the deployment service by using a model zoo pre-trained model from the [STM32 model zoo on GH](../pretrained_models/README.md) or your own Hand Posture model. Please refer to the YAML file [deployment_config.yaml](../src/config_file_examples/deployment_config.yaml), which is a ready YAML file with all the necessary sections ready to be filled, or you can update the [user_config.yaml](../src/user_config.yaml) to use it.
 
-As an example, we will show how to deploy the model [CNN2D_ST_HandPosture_8classes.h5](https://github.com/STMicroelectronics/stm32ai-modelzoo/hand_posture/CNN2D_ST_HandPosture/ST_pretrainedmodel_custom_dataset/ST_VL53L8CX_handposture_dataset/CNN2D_ST_HandPosture_8classes/) pre-trained on the [ST_VL53L8CX_handposture_dataset](../datasets/) dataset .
+As an example, we will show how to deploy the model [CNN2D_ST_HandPosture_8classes.h5](https://github.com/STMicroelectronics/stm32ai-modelzoo/tree/master/hand_posture/CNN2D_ST_HandPosture/ST_pretrainedmodel_custom_dataset/ST_VL53L8CX_handposture_dataset/CNN2D_ST_HandPosture_8classes/) pre-trained on the [ST_VL53L8CX_handposture_dataset](../datasets/) dataset .
 
 <ul><details open><summary><a href="#2-1">2.1 Setting the Model and the Operation Mode</a></summary><a id="2-1"></a>
 

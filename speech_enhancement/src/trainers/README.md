@@ -72,7 +72,7 @@ This tutorial only describes enough settings for you to be able to run an exampl
 </details></ul>
 <ul><details open><summary><a href="#2-2">2.2 Using a premade configuration file</a></summary><a id="2-2"></a>
 
-The [pretrained_models on GH](https://github.com/STMicroelectronics/stm32ai-modelzoo/speech_enhancement/) directory contains several subfolders, one for each model architecture.
+The [pretrained_models on GH](https://github.com/STMicroelectronics/stm32ai-modelzoo/tree/master/speech_enhancement/) directory contains several subfolders, one for each model architecture.
 Some of these models need quite different pre-processing, feature extraction and training parameters, and using different ones could lead to wildly varying performance.
 
 **Each of these subdirectories contains the config.yaml file that was used to train the model**.

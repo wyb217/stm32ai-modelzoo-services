@@ -42,9 +42,9 @@ The deployment of the model is driven by a configuration file written in the YAM
 This tutorial only describes enough settings for you to be able to deploy a pretrained model from the model zoo. Please refer to the [human_activity_recognition/README.md](../src/README.md) file for more information on the configuration file.
 
 In this tutorial, we will be deploying a pretrained model from the STM32 model zoo.
-Pretrained models can be found under the [model zoo on GH](https://github.com/STMicroelectronics/stm32ai-modelzoo/human_activity_recognition/) folder. Each of the pretrained models has its own subfolder. These subfolders contain a copy of the configuration file used to train this model. Copy the `preprocessing` section from the given model to your own configuration file [user_config.yaml](../src/user_config.yaml), to ensure you have the correct preprocessing parameters for the given model.
+Pretrained models can be found under the [model zoo on GH](https://github.com/STMicroelectronics/stm32ai-modelzoo/tree/master/human_activity_recognition/) folder. Each of the pretrained models has its own subfolder. These subfolders contain a copy of the configuration file used to train this model. Copy the `preprocessing` section from the given model to your own configuration file [user_config.yaml](../src/user_config.yaml), to ensure you have the correct preprocessing parameters for the given model.
 
-In this tutorial, we will deploy an [ign_wl_24.h5](https://github.com/STMicroelectronics/stm32ai-modelzoo/human_activity_recognition/ign/ST_pretrainedmodel_custom_dataset/mobility_v1/ign_wl_24/ign_wl_24.h5) that has been trained on mobility_v1, a proprietary dataset collected by STMicroelectronics.
+In this tutorial, we will deploy an [ign_wl_24.h5](https://github.com/STMicroelectronics/stm32ai-modelzoo/blob/master/human_activity_recognition/ign/ST_pretrainedmodel_custom_dataset/mobility_v1/ign_wl_24/ign_wl_24.h5) that has been trained on mobility_v1, a proprietary dataset collected by STMicroelectronics.
 
 <ul><details open><summary><a href="#2-1">2.1 Operation mode</a></summary><a id="2-1"></a>
 
@@ -113,7 +113,7 @@ For more details on this section, please consult section 3.5 and section 6 of th
 </details></ul>
 <ul><details open><summary><a href="#2-4">2.4 Data Preparation and Preprocessing</a></summary><a id="2-4"></a>
 
-When performing Human Activity Recognition, the data is not processed sample by sample; rather, the data is first framed using different lengths depending on how often a prediction is to be made. In this operation, we are using a model which used a framing of length 24, as suggested by the name: [ign_wl_24.h5](https://github.com/STMicroelectronics/stm32ai-modelzoo/human_activity_recognition/ign/ST_pretrainedmodel_custom_dataset/mobility_v1/ign_wl_24/ign_wl_24.h5), `wl` stands for window length. The first step of the data preparation is to do the framing of the samples. This information is provided in the section `training.model` as shown below while training:
+When performing Human Activity Recognition, the data is not processed sample by sample; rather, the data is first framed using different lengths depending on how often a prediction is to be made. In this operation, we are using a model which used a framing of length 24, as suggested by the name: [ign_wl_24.h5](https://github.com/STMicroelectronics/stm32ai-modelzoo/blob/master/human_activity_recognition/ign/ST_pretrainedmodel_custom_dataset/mobility_v1/ign_wl_24/ign_wl_24.h5), `wl` stands for window length. The first step of the data preparation is to do the framing of the samples. This information is provided in the section `training.model` as shown below while training:
 ```yaml
 training:
   model:

@@ -8,6 +8,6 @@ You will find the following directory :
 
 
 You can get footprints and performance information for each model following links below:
-- [stft_tcnn](https://github.com/STMicroelectronics/stm32ai-modelzoo/speech_enhancement/stft_tcnn/README.md)
+- [stft_tcnn](https://github.com/STMicroelectronics/stm32ai-modelzoo/blob/master/speech_enhancement/stft_tcnn/README.md)
 
 

@@ -6,9 +6,9 @@ The STM32 model zoo includes several models for semantic segmentation use cases 
 - `ST_pretrainedmodel_custom_dataset` contains different semantic segmentation models trained on ST custom datasets using our [training scripts](../src/training/README.md).
 - `ST_pretrainedmodel_public_dataset` contains different semantic segmentation models trained on various public datasets following the [training section](../src/training/README.md) in STM32 model zoo.
 
-**Feel free to explore the model zoo and get pre-trained models [here](https://github.com/STMicroelectronics/stm32ai-modelzoo/semantic_segmentation/).**
+**Feel free to explore the model zoo and get pre-trained models [here](https://github.com/STMicroelectronics/stm32ai-modelzoo/tree/master/semantic_segmentation/).**
 
 
 
 You can get footprints and performance information for each model following links below:
-- [deeplab_v3](https://github.com/STMicroelectronics/stm32ai-modelzoo/semantic_segmentation/deeplab_v3/README.md)
+- [deeplab_v3](https://github.com/STMicroelectronics/stm32ai-modelzoo/blob/master/semantic_segmentation/deeplab_v3/README.md)

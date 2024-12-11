@@ -105,6 +105,13 @@ training:
       patience: 60
 #  trained_model_path: trained.h5   # Optional, use it if you want to save the best model at the end of the training to a path of your choice
 
+quantization:
+  quantizer: TFlite_converter
+  quantization_type: PTQ
+  quantization_input_type: int8
+  quantization_output_type: float
+  export_dir: quantized_models
+
 mlflow:
   uri: ./experiments_outputs/mlruns
 

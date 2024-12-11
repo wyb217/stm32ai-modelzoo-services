@@ -17,4 +17,4 @@ Under [benchmarking](./benchmarking/README.md), you can find a step by step guid
 ## Deployment
 Under [deployment](../deployment/README.md), you can find a step by step guide plus the necessary scripts and tools to deploy your own pre-trained HAR model on your STM32 board using STM32Cube.AI.
 
-You can also use a pretrained model from our `Human Activity Recognition STM32 model zoo`. Check out the available models in the [human_activity_recognition/pretrained_models](../pretrained_models/README.md) directory, or on the [model zoo on GitHub](https://github.com/STMicroelectronics/stm32ai-modelzoo/human_activity_recognition/).
+You can also use a pretrained model from our `Human Activity Recognition STM32 model zoo`. Check out the available models in the [human_activity_recognition/pretrained_models](../pretrained_models/README.md) directory, or on the [model zoo on GitHub](https://github.com/STMicroelectronics/stm32ai-modelzoo/tree/master/human_activity_recognition/).

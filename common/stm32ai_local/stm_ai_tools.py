@@ -106,9 +106,9 @@ def _get_stm32ai_cli(root_path: Union[str, Path], host_os: str) -> List[Tuple[ST
         version_10 = pattern_10.findall(lines[4]) if len(lines) > 4 else []
         if version_8 != []:
             version = version_8
-        if version_9 != []:
+        elif version_9 != []:
             version = version_9
-        if version_10 != []:
+        elif version_10 != []:
             version = version_10
         else:
             raise ValueError('Unable to find the CubeAi version')

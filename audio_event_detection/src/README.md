@@ -323,7 +323,7 @@ In a typical AED pipeline, once the temporal domain preprocessing has been perfo
 
 In the model zoo, we convert the input waveform to a log-mel spectrogram. This spectrogram is then cut into several patches of fixed size, and each patch is fed as input to the model. When running the model on the board, patches are computed on the fly, and passed as input to the model in realtime.
 
-Different models expect spectrograms computed with different parameters. You can reference the several `config.yaml` files provided with the pretrained models in the [model zoo on GH](https://github.com/STMicroelectronics/stm32ai-modelzoo/audio_event_detection/) to find out which parameters were used for each model.
+Different models expect spectrograms computed with different parameters. You can reference the several `config.yaml` files provided with the pretrained models in the [model zoo on GH](https://github.com/STMicroelectronics/stm32ai-modelzoo/tree/master/audio_event_detection/) to find out which parameters were used for each model.
 
 The 'feature_extraction' section and its attributes is shown below.
 
@@ -489,7 +489,7 @@ training:
 
 The `model` subsection is used to specify a model that is available with the Model Zoo:
 - The `name` and `input_shape` attributes must always be present.
-- Additional attributes are needed depending on the type of model. For example, an `embedding_size` attribute is required for a Yamnet model and  `n_stacks` and `version` attributes are required for a Miniresnet model. To know which models require which attributes, please consult <a href="#appendix-a">Appendix-A: Models available with the Model Zoo</a>, or the [models.json](training/doc/models.json) documentation. Additionally, you can reference the configuration files provided with the pretrained models in the [model zoo on GH](https://github.com/STMicroelectronics/stm32ai-modelzoo/audio_event_detection/)
+- Additional attributes are needed depending on the type of model. For example, an `embedding_size` attribute is required for a Yamnet model and  `n_stacks` and `version` attributes are required for a Miniresnet model. To know which models require which attributes, please consult <a href="#appendix-a">Appendix-A: Models available with the Model Zoo</a>, or the [models.json](training/doc/models.json) documentation. Additionally, you can reference the configuration files provided with the pretrained models in the [model zoo on GH](https://github.com/STMicroelectronics/stm32ai-modelzoo/tree/master/audio_event_detection/)
 - The optional `pretrained_weights` attribute can be used to load pretrained weights in the model before it gets trained, and perform transfer learning.
 If set to True, pretrained weights are loaded, and if set to False the model is trained from scratch. If you want to load pretrained weights, and fine-tune the entire model (instead of just performing transfer learning by retraining the last layer), you can set the `fine_tune` parameter to True.
 Transfer learning is covered in the "Transfer learning" section of the documentation.
@@ -989,7 +989,7 @@ The models that are available with the Model Zoo and their parameters are descri
 
 The 'model' sections that are shown below must be added to the 'training' section of the configuration file.
 
-When using pretrained backbones with these models, you will want to have specific preprocessing and feature extraction parameters. Please, refer to the configuration files provided in the [model zoo on GH](https://github.com/STMicroelectronics/stm32ai-modelzoo/audio_event_detection/) for these parameters.
+When using pretrained backbones with these models, you will want to have specific preprocessing and feature extraction parameters. Please, refer to the configuration files provided in the [model zoo on GH](https://github.com/STMicroelectronics/stm32ai-modelzoo/tree/master/audio_event_detection/) for these parameters.
 
 If you are fine-tuning, or training from scratch, feel free to use whichever preprocessing and feature extraction parameters you desire !
 
