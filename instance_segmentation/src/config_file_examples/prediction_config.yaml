@@ -1,7 +1,7 @@
 general:
   project_name: coco_instance_seg
   model_type: yolo_v8_seg
-  model_path: path/to/stm32-hotspot/ultralytics/yolov8n-seg_full_integer_quant_256.tflite
+  model_path: https://github.com/stm32-hotspot/ultralytics/raw/refs/heads/main/examples/YOLOv8-STEdgeAI/stedgeai_models/segmentation/yolov8n_256_quant_pc_uf_seg_coco-st.tflite
   display_figures: true
 
 operation_mode: prediction

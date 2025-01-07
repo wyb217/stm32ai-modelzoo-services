@@ -14,6 +14,7 @@ from omegaconf import DictConfig
 from pathlib import Path
 import re
 import numpy as np
+import requests
 
 aspect_ratio_dict = {"fit": "ASPECT_RATIO_FIT",
                      "crop": "ASPECT_RATIO_CROP",
@@ -23,8 +24,6 @@ aspect_ratio_dict = {"fit": "ASPECT_RATIO_FIT",
 color_mode_n6_dict = {"rgb": "COLOR_RGB",
                       "bgr": "COLOR_BGR"}
                       
-                      
-import requests
 
 
 def download_file(url:str, local_path:str):

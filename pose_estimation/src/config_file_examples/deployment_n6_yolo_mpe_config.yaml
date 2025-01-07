@@ -1,5 +1,5 @@
 general:
-   model_path: path/to/stm32-hotspot/ultralytics/yolov8n_256_quant_pt_uf_pose_coco-st.tflite
+   model_path: https://github.com/stm32-hotspot/ultralytics/raw/refs/heads/main/examples/YOLOv8-STEdgeAI/stedgeai_models/pose_estimation/yolov8n_256_quant_pt_uf_pose_coco-st.tflite
    model_type: yolo_mpe
 
 operation_mode: deployment

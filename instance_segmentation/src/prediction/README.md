@@ -24,7 +24,7 @@ The `general` section and its attributes are shown below.
 ```yaml
 general:
   project_name: coco_instance_seg          # Project name. Optional, defaults to "<unnamed>".
-  model_path: path/to/stm32-hotspot/ultralytics/yolov8n-seg_full_integer_quant_256.tflite
+  model_path: https://github.com/stm32-hotspot/ultralytics/raw/refs/heads/main/examples/YOLOv8-STEdgeAI/stedgeai_models/segmentation/yolov8n_256_quant_pc_uf_seg_coco-st.tflite
   gpu_memory_limit: 16                     # Maximum amount of GPU memory in GBytes that TensorFlow may use (an integer).
 ```
 

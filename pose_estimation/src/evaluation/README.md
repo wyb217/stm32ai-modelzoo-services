@@ -21,13 +21,13 @@ model using our evaluation service.
 <ul><details open><summary><a href="#1-1">1.1 Set the model and the operation mode</a></summary><a id="1-1"></a>
 
 As mentioned previously, all the sections of the YAML file must be set in accordance with
-this **[README.md](../config_file_examples/evaluation_config.yaml)**.
+this **[YAML file](../config_file_examples/evaluation_mpe_config.yaml)**.
 In particular, `operation_mode` should be set to evaluation and the `evaluation` section should be filled as in the
 following example:
 
 ```yaml
 general:
-  model_path: yolov8n_pose_int8.tflite
+  model_path: https://github.com/stm32-hotspot/ultralytics/raw/refs/heads/main/examples/YOLOv8-STEdgeAI/stedgeai_models/pose_estimation/yolov8n_256_quant_pt_uf_pose_coco-st.tflite
   model_type: yolo_mpe
 
 operation_mode: evaluation

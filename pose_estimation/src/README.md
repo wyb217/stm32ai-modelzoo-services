@@ -131,7 +131,7 @@ The `general` section and its attributes are shown below.
 general:
   project_name: COCO2017_pose_Demo  # Project name. Optional, defaults to "<unnamed>".
   model_type: yolo_mpe              # Name of the model 
-  model_path: <file-path>           # Path to a model file.
+  model_path: <file-path>           # Path to a model file or the raw link to the model from ultralytics.
   logs_dir: logs                    # Name of the directory where log files are saved. Optional, defaults to "logs".
   saved_models_dir: saved_models    # Name of the directory where model files are saved. Optional, defaults to "saved_models".
   deterministic_ops: False          # Enable/disable deterministic operations (a boolean). Optional, defaults to False.

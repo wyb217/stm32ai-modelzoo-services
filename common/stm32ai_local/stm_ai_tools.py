@@ -98,19 +98,10 @@ def _get_stm32ai_cli(root_path: Union[str, Path], host_os: str) -> List[Tuple[ST
             middlewares = cdt.parent / 'Middlewares'
         cmd_line = str(filepath) + ' --version'
         err, lines = run_shell_cmd(cmd_line, logger=logger)
-        pattern_8 = re.compile(r'STM.ai v(\d+\.\d+\.\d+)')
-        version_8 = pattern_8.findall(lines[0])
-        pattern_9 = re.compile(r'STM32 MCU module v(\d+\.\d+\.\d+)')
-        version_9 = pattern_9.findall(lines[1]) if len(lines) > 1 else []
-        pattern_10= re.compile(r'STM32CubeAI (\d+\.\d+\.\d+)')
-        version_10 = pattern_10.findall(lines[4]) if len(lines) > 4 else []
-        if version_8 != []:
-            version = version_8
-        elif version_9 != []:
-            version = version_9
-        elif version_10 != []:
-            version = version_10
-        else:
+        pattern = re.compile(r'STM32CubeAI (\d+\.\d+\.\d+)')
+        lines_conc = "".join(lines)
+        version = pattern.findall(lines_conc)
+        if version == []:
             raise ValueError('Unable to find the CubeAi version')
         ver = STMAiVersion(version[0], '{} pack'.format(_X_CUBE_AI_PACK_TAG))
         results.append((ver, cdt.parents[idx], cdt))
