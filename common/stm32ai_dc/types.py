@@ -1098,10 +1098,31 @@ class CliParameters(typing.NamedTuple):
     """ Optional: Compression level. Defaults to "lossless" """
 
     allocateInputs: bool = True
-    """ When set to true, activations buffer will be also used to handle the input buffers. Defaults to True """
+    """ DEPRECATED: Optional: When set to true, activations buffer will be also used to handle the input buffers. Defaults to True """
 
     allocateOutputs: bool = True
-    """ Optional: When set to true, activations buffer will be also used to handle the output buffers. Defaults to True """
+    """ DEPRECATED: Optional: When set to true, activations buffer will be also used to handle the output buffers. Defaults to True """
+
+    noInputsAllocation: Optional[bool] = None
+    """ input buffers must be provided by the application.
+        (default: input buffers are stored in a reserved space within the "activations" buffer) 
+    """
+    
+    noOutputsAllocation: Optional[bool] = None
+    """  output buffers must be provided by the application.
+        (default: output buffers are stored in a reserved space within the "activations" buffer) 
+    """
+    
+    inputDataType: Optional[str] = None
+    """ indicate the expected inputs data type of the generated model
+        Multiple inputs: in_data_type_1,in_data_type_2,...
+        If one data type is given, it will be applied for all inputs
+    """
+    outputDataType: Optional[str] = None
+    """indicate the expected outputs data type of the generated model
+        Multiple outputs: out_data_type_1,out_data_type_2,...
+        If one data type is given, it will be applied for all outputs
+    """
 
     target: Optional[str] = None
     """ Optional: Defines a serie which will be used to calculate more accurate memory footprint. Defaults to "stm32f4" """

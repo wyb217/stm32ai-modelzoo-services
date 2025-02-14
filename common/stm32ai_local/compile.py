@@ -208,10 +208,12 @@ def cmd_compile(
     logger.info(' target      : %s', str(session.board))
     logger.info(' options     : %s', str(cmd_line[-1]))
 
-    err, _ = run_shell_cmd(cmd_line, logger=logger)
+    err, errorList = run_shell_cmd(cmd_line, logger=logger)
 
     if err != 0:
-        raise Exception('WRONG!')
+        for i in range(len(errorList)):
+            logger.info('%s', str(errorList[i]))
+        raise Exception('Error during compilation')
 
     # post-process the results
     if err == 0:

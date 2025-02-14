@@ -22,7 +22,7 @@ The augmented dataset increases the number of images and masks to a total of 105
 
 The additional masks can be downloaded from the following Dropbox link:
 
-[Download Additional Masks](https://www.dropbox.com/path/to/masks)
+[Download Additional Masks](https://www.dropbox.com/scl/fi/xccys1fus0utdioi7nj4d/SegmentationClassAug.zip?rlkey=0wl8iz6sc40b3qf6nidun4rez&e=3&dl=0)
 
 These masks are integer masks with indices representing different classes. They should be placed in the same directory structure as the original Pascal VOC 2012 dataset.
 

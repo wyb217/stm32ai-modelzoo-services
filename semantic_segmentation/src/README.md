@@ -150,13 +150,8 @@ dataset:
 ```
 The `name` attribute is mandatory. To date, the unique accepted values without the `class_names`: `pascal_voc`, `indoor_pascal_voc`, `person_pascal_voc`, `outdoor_pascal_voc`. However, if using a different dataset and naming convention, the `class_name` attribute should be provided.
 
-**Please follow the [PASCAL VOC 2012 tutorial](../datasets/pascal_voc_2012/README.md) to have more training masks (about 10,582) and a `trainaug.txt` file containing the IDs of the new training masks. Or, the [COCO 2017 PASCAL VOC 2012 tutorial](../datasets/coco_2017_pascal_voc_2012/README.md) to create COCO 2017 + PASCAL VOC 2012 dataset, and the [n_class_coco_2017_pascal_voc_2012 tutorial](../datasets/n_class_coco_2017_pascal_voc_2012/README.md) to create the indoor_pascal_voc, outdoor_pascal_voc, person_pascal_voc dataset.**
-
----
-
 The `name` attribute is mandatory. To date, a unique value is accepted: `pascal_voc`. This parameter is used in the data_loader in order to correctly construct each dataset expecting [PASCAL VOC 2012](http://host.robots.ox.ac.uk/pascal/VOC/voc2012/) structure. In the future, it could be extended to other dataset types.
 
-**Please follow the [PASCAL VOC 2012 tutorial](../datasets/pascal_voc_2012/README.md) to have more training masks (about 10,582) and a `trainaug.txt` file containing the IDs of the new training masks. Or, the [COCO 2017 PASCAL VOC 2012 tutorial](../datasets/coco_2017_pascal_voc_2012/README.md) to create COCO 2017 + PASCAL VOC 2012 dataset.**
 
 To adhere to the PASCAL VOC 2012 structure, we need to establish three paths for each set. This setup will automatically retrieve the specified images from the training path's JPEG images directory and the corresponding masks from the training masks path.
 
@@ -167,6 +162,8 @@ the validation set. The `seed` attribute specifies the seed value to use for ran
 
 The 3 quantization path attributes are used to specify a dataset for the quantization process. If these attributes are not provided and a training set is available, the training set is used for the quantization. 
 However, training sets can be quite large and the quantization process can take a long time to run. To avoid this issue, you can set the `quantization_split` attribute to use only a random portion of the dataset for quantization.
+
+**Please follow the [PASCAL VOC 2012 tutorial](../datasets/pascal_voc_2012/README.md) to have more training masks (about 10,582) and a `trainaug.txt` file containing the IDs of the new training masks. Or, the [COCO 2017 PASCAL VOC 2012 tutorial](../datasets/coco_2017_pascal_voc_2012/README.md) to create COCO 2017 + PASCAL VOC 2012 dataset, and the [n_class_coco_2017_pascal_voc_2012 tutorial](../datasets/n_class_coco_2017_pascal_voc_2012/README.md) to create the indoor_pascal_voc, outdoor_pascal_voc, person_pascal_voc dataset.**
 
 </details></ul>
 <ul><details open><summary><a href="#2-4">2.4 Apply image preprocessing</a></summary><a id="2-4"></a>
