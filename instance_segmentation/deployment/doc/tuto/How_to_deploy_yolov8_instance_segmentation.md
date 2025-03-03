@@ -22,6 +22,26 @@ The STMicroelectronics Ultralytics fork: [https://github.com/stm32-hotspot/ultra
 These models are ready to be deployed and you can go directly to the deployment section.
 The other sections below explain how to start from a model trained with Ultralytics scripts and not quantized.
 
+If you just want to deploy pre-trained and quantized segmentation, you can get them from the STMicroelectronics Ultralytics.
+If you want to train, you can use directly Ultralytics repository at [https://github.com/ultralytics/ultralytics](https://github.com/ultralytics/ultralytics).
+
+## Pre-requisite
+  
+By default, Ultralytics requirements do not install the packages required to export to onnx or tensorflow lite.
+When exporting for the first time, it will either use pre-installed packages or do an auto update installing the latest versions which then causes compatibility issues.
+To ensure compatibility, you need to install (or downgrade) the versions of tensorflow, onnx and onnxruntime following below requirements:
+Use a python 3.9 environment (for the tflite_support package dependency)
+Tensorflow version between 2.8.3 and 2.15.1
+ONNX version between 1.12.0 and 1.15.0
+ONNX runtime version between 1.13 and 1.18.1
+```
+	pip install tensorflow==2.15.1
+	pip install tf_keras==2.15.1
+	pip install onnx==1.15.0
+	pip install onnxruntime==1.18.1
+```
+Other packages can be installed through the auto update procedure.
+
 ## Training a model with Ultralytics scripts
 
 Train the `Yolov8n-seg` model as usual using Ultralytics scripts or start from the pre-trained Yolov8n-seg Pytorch model.
