@@ -30,7 +30,35 @@ This directory contains the following files :
 - Several confusion matrices, as well as plots of the loss & validation accuracy curves during training are included.
 
 </details></ul>
-<ul><details open><summary><a href="#1-3">1.3 MLflow</a></summary><a id="1-3"></a>
+<ul><details open><summary><a href="#1-3">1.3 ClearML run</a></summary><a id="1-3"></a>
+
+ClearML is an open-source tool used for logging and tracking machine learning experiments. It allows you to record metrics, parameters, and results, making it easier to monitor and compare diffrent runs.
+
+Follow these steps to configurate ClearML for logging your results. This setup only needs to be done once. if you haven't set it up yet, complete the steps below. if you've already configured ClearML, your results should be automatically logged and available in your session.
+
+- Sign up for free to the [ClearML Hosted Service](https://app.clear.ml), then go to your ClearML workspace and create new credentials.
+
+- Create a `clearml.conf` file and paste the credentials into it. If you are behind a proxy or using SSL portals, add `verify_certificate = False` to the configuration to make it work. Here is an example of what your `clearml.conf` file might look like:
+
+    ```ini
+    api {
+        web_server: https://app.clear.ml
+        api_server: https://api.clear.ml
+        files_server: https://files.clear.ml
+        # Add this line if you are behind a proxy or using SSL portals
+        verify_certificate = False
+        credentials {
+            "access_key" = "YOUR_ACCESS_KEY"
+            "secret_key" = "YOUR_SECRET_KEY"
+        }
+    }
+  
+    ```
+
+Once configured, your experiments will be logged directly and shown in the project section under the name of your project.
+
+</details></ul>
+<ul><details open><summary><a href="#1-4">1.4 MLflow run</a></summary><a id="1-4"></a>
 
 MLflow is an API for logging parameters, code versions, metrics, and artifacts while running machine learning code and for visualizing results.
 The model zoo lets you use MLflow to easily visualize the results and metrics obtained in multiple trainings.

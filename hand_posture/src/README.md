@@ -19,6 +19,7 @@ Remember that minimalistic yaml files are available [here](./config_file_example
    - [3.1 Saved results](#3-1)
    - [3.2 Run tensorboard](#3-2)
    - [3.3 Run MLFlow](#3-3)
+   - [3.4 Run ClearML](#3-4)
 
 <details open><summary><a href="#1"><b>1. Hand Posture Model Zoo introduction</b></a></summary><a id="1"></a>
 
@@ -357,7 +358,7 @@ tensorboard --logdir logs
 This will start a server and its address will be displayed. Use this address in a web browser to connect to the server. Then, using the web browser, you will be able to explore the learning curves and other training metrics.
 
 </details></ul>
-<ul><details open><summary><a href="#3-3">3.3 Run MLFlow</a></summary><a id="4-3"></a>
+<ul><details open><summary><a href="#3-3">3.3 Run MLFlow</a></summary><a id="3-3"></a>
 
 MLflow is an API that allows you to log parameters, code versions, metrics, and artifacts while running machine learning code, and provides a way to visualize the results. 
 
@@ -368,8 +369,35 @@ mlflow ui
 ```
 This will start a server and its address will be displayed. Use this address in a web browser to connect to the server. Then, using the web browser, you will be able to navigate the different experiment directories and look at the metrics that were collected. Refer to [MLflow Home](https://mlflow.org/) for more information about MLflow.
 
+
 </details></ul>
-</details>
+<ul><details open><summary><a href="#3-4">3.4 Run ClearML</a></summary><a id="3-4"></a>
+
+ClearML is an open-source tool used for logging and tracking machine learning experiments. It allows you to record metrics, parameters, and results, making it easier to monitor and compare diffrent runs.
+
+Follow these steps to configurate ClearML for logging your results. This setup only needs to be done once. if you haven't set it up yet, complete the steps below. if you've already configured ClearML, your results should be automatically logged and available in your session.
+
+- Sign up for free to the [ClearML Hosted Service](https://app.clear.ml), then go to your ClearML workspace and create new credentials.
+
+- Create a `clearml.conf` file and paste the credentials into it. If you are behind a proxy or using SSL portals, add `verify_certificate = False` to the configuration to make it work. Here is an example of what your `clearml.conf` file might look like:
+
+    ```ini
+    api {
+        web_server: https://app.clear.ml
+        api_server: https://api.clear.ml
+        files_server: https://files.clear.ml
+        # Add this line if you are behind a proxy or using SSL portals
+        verify_certificate = False
+        credentials {
+            "access_key" = "YOUR_ACCESS_KEY"
+            "secret_key" = "YOUR_SECRET_KEY"
+        }
+    }
+  
+    ```
+
+Once configured, your experiments will be logged directly and shown in the project section under the name of your project.
+
 <details open><summary><a href="#A"><b>Appendix A: YAML syntax</b></a></summary><a id="A"></a>
 
 **Example and terminology:**

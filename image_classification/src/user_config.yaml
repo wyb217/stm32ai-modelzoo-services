@@ -113,7 +113,7 @@ prediction:
 
 tools:
   stedgeai:
-    version: 9.1.0
+    version: 10.0.0
     optimization: balanced
     on_cloud: True
     path_to_stedgeai: C:/Users/<XXXXX>/STM32Cube/Repository/Packs/STMicroelectronics/X-CUBE-AI/<*.*.*>/Utilities/windows/stedgeai.exe

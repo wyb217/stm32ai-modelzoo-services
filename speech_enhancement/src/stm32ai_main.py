@@ -18,6 +18,8 @@ from trainers import train
 from evaluators import evaluate
 from quantization import quantize
 from deployment import deploy
+from clearml import Task
+from clearml.backend_config.defs import get_active_config_file
 
 def _process_mode(cfg):
      
@@ -203,7 +205,14 @@ def _process_mode(cfg):
 
     # logging the completion of the chain
     log_to_file(cfg.output_dir, f'Operation finished: {mode}')
-        
+
+    # ClearML - Example how to get task's context anywhere in the file.
+    # Checks if there's a valid ClearML configuration file
+    if get_active_config_file() is not None: 
+        print(f"[INFO] : ClearML task connection")
+        task = Task.current_task()
+        task.connect(cfg)
+
 
 @hydra.main(version_base=None, config_path="", config_name="user_config")
 def main(cfg: DictConfig) -> None:
@@ -221,6 +230,17 @@ def main(cfg: DictConfig) -> None:
     cfg = get_config(cfg)
     cfg.output_dir = HydraConfig.get().runtime.output_dir
     mlflow_ini(cfg)
+
+    # Checks if there's a valid ClearML configuration file
+    print(f"[INFO] : ClearML config check")
+    if get_active_config_file() is not None:
+        print(f"[INFO] : ClearML initialization and configuration")
+        # ClearML - Initializing ClearML's Task object.
+        task = Task.init(project_name=cfg.general.project_name,
+                         task_name='se_modelzoo_task')
+        # ClearML - Optional yaml logging 
+        task.connect_configuration(name=cfg.operation_mode, 
+                                   configuration=cfg)
 
     _process_mode(cfg)
 

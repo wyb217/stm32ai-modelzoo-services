@@ -138,7 +138,7 @@ Object detection is used to detect, locate and estimate the occurrences probabil
 | [ST Yolo LC v1](https://github.com/STMicroelectronics/stm32ai-modelzoo/blob/master/object_detection/st_yolo_lc_v1/README.md)   |  192x192x3<br> 224x224x3<br> 256x256x3<br>  | Full OD Services      | [STM32H747I-DISCO](application_code/object_detection/STM32H7/Application/STM32H747I-DISCO) with B-CAMS-OMV camera daughter board<br>  |
 | [Tiny Yolo v2](https://github.com/STMicroelectronics/stm32ai-modelzoo/blob/master/object_detection/tiny_yolo_v2/README.md)   |  224x224x3<br> 416x416x3<br>  | Full OD Services      | [STM32N6570-DK](https://www.st.com/en/development-tools/stm32n6-ai.html)<br>     |
 | [ST Yolo X](https://github.com/STMicroelectronics/stm32ai-modelzoo/blob/master/object_detection/st_yolo_x/README.md)   |  256x256x3<br> 416x416x3<br>  | Full OD Services      | [STM32N6570-DK](https://www.st.com/en/development-tools/stm32n6-ai.html)<br>     |
-| [Yolo v8](https://github.com/stm32-hotspot/ultralytics/tree/main/examples/YOLOv8-STEdgeAI/stedgeai_models/object_detection)   |  192x192x3<br> 256x256x3<br> 320x320x3<br> 416x416x3<br>  | Evaluation / Benchmarking / Prediction / Deployment    | [STM32N6570-DK](https://www.st.com/en/development-tools/stm32n6-ai.html)<br>     |
+| [Yolo v8](https://github.com/stm32-hotspot/ultralytics/tree/main/examples/YOLOv8-STEdgeAI/stedgeai_models/object_detection) <br> Yolo v5u  |  192x192x3<br> 256x256x3<br> 320x320x3<br> 416x416x3<br>  | Evaluation / Benchmarking / Prediction / Deployment    | [STM32N6570-DK](https://www.st.com/en/development-tools/stm32n6-ai.html)<br>     |
 
 
 [Full OD Services](object_detection/README.md) : training, evaluation, quantization, benchmarking, prediction, deployment
@@ -457,18 +457,54 @@ pip install -r requirements.txt
 
 ## Jump start with Colab
 
-In [tutorials/notebooks](tutorials/notebooks/README.md) you will find a jupyter notebook that can be easily deployed on
-Colab to exercise STM32 model zoo training scripts.
-
+In the `tutorials/notebooks` directory, you will find a Jupyter notebook that can be easily deployed on Colab to exercise STM32 model zoo training scripts.
 
 > [!IMPORTANT]
-> In this project, we are using **TensorFLow version 2.8.3** following unresolved issues with newest versions of TensorFlow, see [more](https://github.com/tensorflow/tensorflow/issues/56242).
+> In this project, we are using TensorFlow version 2.8.3 due to unresolved issues with newer versions of TensorFlow. For more details, see [this issue](https://github.com/tensorflow/tensorflow/issues/56242).
 
->[!CAUTION]
-> If there are some white spaces in the paths (for Python, STM32CubeIDE, or, STM32Cube.AI local installation) this can result in errors. So avoid having paths with white spaces in them.
+> [!CAUTION]
+> If there are any white spaces in the paths (for Python, STM32CubeIDE, or STM32Cube.AI local installation), this can result in errors. Avoid having paths with white spaces.
 
->[!TIP]
-> In this project we are using the `mlflow` library to log the results of different runs. Depending on which version of Windows OS are you using or where you place the project the output log files might have a very long path which might result in an error at the time of logging the results. As by default, Windows uses a path length limitation (MAX_PATH) of 256 characters: Naming Files, Paths, and Namespaces. To avoid this potential error, create (or edit) a variable named `LongPathsEnabled` in **Registry Editor** under **Computer/HKEY_LOCAL_MACHINE/SYSTEM/CurrentControlSet/Control/FileSystem/** and assign it a value of `1`. This will change the maximum length allowed for the file length on Windows machines and will avoid any errors resulting due to this. For more details have a look at this [link](https://knowledge.autodesk.com/support/autocad/learn-explore/caas/sfdcarticles/sfdcarticles/The-Windows-10-default-path-length-limitation-MAX-PATH-is-256-characters.html). Note that using GIT, line below may help solving long path issue : 
-```bash
-git config --system core.longpaths true
-```
+> [!TIP]
+> In this project, we are using the ClearML library to log the results of different runs.
+
+### ClearML Setup
+
+1. **Sign Up**: Sign up for free to the [ClearML Hosted Service](https://app.clear.ml). Alternatively, you can set up your own server as described [here](https://clear.ml/docs/latest/docs/deploying_clearml/).
+
+2. **Create Credentials**: Go to your ClearML workspace and create new credentials.
+
+3. **Configure ClearML**: Create a `clearml.conf` file and paste the credentials into it. If you are behind a proxy or using SSL portals, add `verify_certificate = False` to the configuration to make it work. Here is an example of what your `clearml.conf` file might look like:
+
+    ```ini
+    api {
+        web_server: https://app.clear.ml
+        api_server: https://api.clear.ml
+        files_server: https://files.clear.ml
+        # Add this line if you are behind a proxy or using SSL portals
+        verify_certificate = False
+        credentials {
+            "access_key" = "YOUR_ACCESS_KEY"
+            "secret_key" = "YOUR_SECRET_KEY"
+        }
+    }
+  
+    ```
+
+Once configured, your experiments will be logged directly and shown in the project section under the name of your project.
+
+### MLflow Setup
+
+In this project, we are also using the MLflow library to log the results of different runs.
+
+#### Windows Path Length Limitation
+
+Depending on which version of Windows OS you are using or where you place the project, the output log files might have a very long path, which might result in an error at the time of logging the results. By default, Windows uses a path length limitation (MAX_PATH) of 256 characters. To avoid this potential error, follow these steps:
+
+1. **Enable Long Paths**: Create (or edit) a variable named `LongPathsEnabled` in the Registry Editor under `Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem` and assign it a value of `1`. This will change the maximum length allowed for the file path on Windows machines and will avoid any errors resulting due to this. For more details, refer to [Naming Files, Paths, and Namespaces](https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file).
+
+2. **GIT Configuration**: If you are using GIT, the line below may help solve the long path issue:
+
+    ```bash
+    git config --system core.longpaths true
+    ```

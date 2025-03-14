@@ -1,5 +1,5 @@
 general:
-   model_path: ../../../model_zoo/pose_estimation/movenet/Public_pretrainedmodel_custom_dataset/custom_dataset_person_17kpts/movenet_lightning_heatmaps_192/movenet_lightning_heatmaps_192.h5
+   model_path: ../../../model_zoo_storage/pose_estimation/movenet/Public_pretrainedmodel_custom_dataset/custom_dataset_person_17kpts/movenet_lightning_heatmaps_192/movenet_lightning_heatmaps_192.h5
    model_type: heatmaps_spe
 
 operation_mode: chain_eqeb

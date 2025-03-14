@@ -21,7 +21,8 @@ Minimalistic YAML files are available [here](./config_file_examples/) to experim
 4. [Visualize the chained services results](#4)
    - [4.1 Saved results](#4-1)
    - [4.2 Run TensorBoard](#4-2)
-   - [4.3 Run MLflow](#4-3)
+   - [4.3 Run ClearML](#4-3)
+   - [4.4 Run MLflow](#4-4)
 5. [Appendix A: YAML syntax](#A)
 
 <details open><summary><a href="#1"><b>1. Image Classification Model Zoo Introduction</b></a></summary><a id="1"></a>
@@ -312,7 +313,7 @@ By default, the quantized model is saved in the 'quantized_models' directory und
 
 The [STM32Cube.AI Developer Cloud](https://stedgeai-dc.st.com/home) allows you to benchmark your model and estimate its footprints and inference time for different STM32 target devices. To use this feature, set the `on_cloud` attribute to True. Alternatively, you can use [STM32Cube.AI](https://www.st.com/en/embedded-software/x-cube-ai.html) to benchmark your model and estimate its footprints for STM32 target devices locally. To do this, make sure to add the path to the `stedgeai` executable under the `path_to_stedgeai` attribute and set the `on_cloud` attribute to False.
 
-The `version` attribute specifies the **STM32Cube.AI** version used to benchmark the model, e.g., 9.1.0, and the `optimization` defines the optimization used to generate the C model, options: "balanced", "time", "ram".
+The `version` attribute specifies the **STM32Cube.AI** version used to benchmark the model, e.g., 10.0.0, and the `optimization` defines the optimization used to generate the C model, options: "balanced", "time", "ram".
 
 The `board` attribute is used to provide the name of the STM32 board to benchmark the model on. The available boards are 'STM32N6570-DK', 'STM32H747I-DISCO', 'STM32H7B3I-DK', 'STM32F469I-DISCO', 'B-U585I-IOT02A', 'STM32L4R9I-DISCO', 'NUCLEO-H743ZI2', 'STM32H735G-DK', 'STM32F769I-DISCO', 'NUCLEO-G474RE', 'NUCLEO-F401RE', and 'STM32F746G-DISCO'.
 
@@ -480,7 +481,35 @@ tensorboard --logdir logs
 This will start a server and its address will be displayed. Use this address in a web browser to connect to the server. Then, using the web browser, you will be able to explore the learning curves and other training metrics.
 
 </details></ul>
-<ul><details open><summary><a href="#4-3">4.3 Run MLflow</a></summary><a id="4-3"></a>
+<ul><details open><summary><a href="#4-3">4.3 Run ClearML</a></summary><a id="4-3"></a>
+
+ClearML is an open-source tool used for logging and tracking machine learning experiments. It allows you to record metrics, parameters, and results, making it easier to monitor and compare diffrent runs.
+
+Follow these steps to configurate ClearML for logging your results. This setup only needs to be done once. if you haven't set it up yet, complete the steps below. if you've already configured ClearML, your results should be automatically logged and available in your session.
+
+- Sign up for free to the [ClearML Hosted Service](https://app.clear.ml), then go to your ClearML workspace and create new credentials.
+
+- Create a `clearml.conf` file and paste the credentials into it. If you are behind a proxy or using SSL portals, add `verify_certificate = False` to the configuration to make it work. Here is an example of what your `clearml.conf` file might look like:
+
+    ```ini
+    api {
+        web_server: https://app.clear.ml
+        api_server: https://api.clear.ml
+        files_server: https://files.clear.ml
+        # Add this line if you are behind a proxy or using SSL portals
+        verify_certificate = False
+        credentials {
+            "access_key" = "YOUR_ACCESS_KEY"
+            "secret_key" = "YOUR_SECRET_KEY"
+        }
+    }
+  
+    ```
+
+Once configured, your experiments will be logged directly and shown in the project section under the name of your project.
+
+</details></ul>
+<ul><details open><summary><a href="#4-4">4.4 Run MLflow</a></summary><a id="4-4"></a>
 
 MLflow is an API that allows you to log parameters, code versions, metrics, and artifacts while running machine learning code, and provides a way to visualize the results. 
 

@@ -87,7 +87,7 @@ tools:
       path_to_stedgeai: C:/Users/<XXXXX>/STM32Cube/Repository/Packs/STMicroelectronics/X-CUBE-AI/<*.*.*>/Utilities/windows/stedgeai.exe
    path_to_cubeIDE: C:/ST/STM32CubeIDE_<*.*.*>/STM32CubeIDE/stm32cubeide.exe
 
-benchmarking: # valid options are STM32MP257F-EV1,STM32MP157F-DK2,STM32MP135F-DK
+benchmarking: # valid options are STM32N6570-DK, STM32MP257F-EV1, STM32MP157F-DK2, STM32MP135F-DK
    board: STM32MP257F-EV1
 
 mlflow:

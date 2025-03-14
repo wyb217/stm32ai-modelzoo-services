@@ -140,7 +140,7 @@ def gen_h_user_file(config):
         if config.feature_extraction.to_db:
             f.write('#define CTRL_X_CUBE_AI_SPECTROGRAM_SILENCE_THR   (0) // 0 means disabled\n')
         else:
-            f.write('#define CTRL_X_CUBE_AI_SPECTROGRAM_SILENCE_THR   (3000.0F) // 0 means disabled\n')
+            f.write('#define CTRL_X_CUBE_AI_SPECTROGRAM_SILENCE_THR   (100.0F) // 0 means disabled\n')
         f.write('#define CTRL_X_CUBE_AI_SPECTROGRAM_WIN           (user_win)\n')
         f.write('#define CTRL_X_CUBE_AI_SPECTROGRAM_MEL_LUT       (user_melFiltersLut)\n')
         f.write('#define CTRL_X_CUBE_AI_SPECTROGRAM_MEL_START_IDX (user_melFiltersStartIndices)\n')
