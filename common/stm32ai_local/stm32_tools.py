@@ -317,10 +317,9 @@ def get_stm32_board_interfaces(series:str="") -> Tuple[List[dict], List[dict]]:
     if app:
         parser = STM32ProgListCommandParser()
         cmd_line = [app[0], '--list']
-        cur_logger = logger if os.environ.get(STMAIC_DEBUG_ENV, None) else None
-        err, lines = run_shell_cmd(cmd_line, logger=cur_logger, parser=parser)
+        err, lines = run_shell_cmd(cmd_line, logger=logger, parser=parser)
         if err != 0 and not parser.no_st_link_detected():
-            if not cur_logger and logger.getEffectiveLevel() > logging.DEBUG:
+            if not logger and logger.getEffectiveLevel() > logging.DEBUG:
                 for line in lines:
                     logger.error(line)
         st_links = parser.st_links()

@@ -303,6 +303,8 @@ def run_shell_cmd(
             lines.insert(0, '$ cwd:  {}'.format(str(cwd)))
             if assert_on_error:
                 raise RuntimeError('invalid command ' + '\"{}\"'.format(str_args))
+            for line in lines:
+                logger.warning(line)
 
         return return_code, lines
 

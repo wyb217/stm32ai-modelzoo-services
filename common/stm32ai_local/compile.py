@@ -180,16 +180,11 @@ def cmd_compile(
     # build the command to call the CLI
     cmd_line = session.tools.executable()
 
-    if session.tools.version < '9.0':
-        cmd_line.extend(['generate'])
-    else:
-        cmd_line.extend(['generate --target', str(series)])
+    cmd_line.extend(['generate --target', str(series)])
     for m_file in session.model_path:
         cmd_line.extend(['-m', m_file])
     cmd_line.extend(['--output', output_dir, '--workspace', output_dir])
 
-    if series not in ('x86', 'default', 'generic') and session.tools.version < '9.0':
-        cmd_line.extend(['--series', str(series)])
     session.options.dll = True
 
     if session.tools.version > '7.1':
@@ -199,10 +194,7 @@ def cmd_compile(
     if target:
         if hasattr(target.config, 'memory_pool_path'):
             if os.path.exists(target.config.memory_pool_path):
-                if session.tools.version < '9.0':
-                    cmd_line.extend(['--target.info ', target.config.memory_pool_path])
-                else:
-                    cmd_line.extend(['--memory-pool ', target.config.memory_pool_path])
+                cmd_line.extend(['--memory-pool ', target.config.memory_pool_path])
 
     logger.info(' tools       : %s', str(session.tools))
     logger.info(' target      : %s', str(session.board))
@@ -217,12 +209,8 @@ def cmd_compile(
 
     # post-process the results
     if err == 0:
-        if session.tools.version < '9.0':
-            c_graph = NetworkCGraphReader(os.path.join(output_dir, f'{session.c_name}_c_graph.json'), series)
-            session.set_c_graph(c_graph)
-        else:
-            c_graph = NetworkCInfoReader(os.path.join(output_dir, f'{session.c_name}_c_info.json'), series)
-            session.set_c_graph(c_graph)
+        c_graph = NetworkCInfoReader(os.path.join(output_dir, f'{session.c_name}_c_info.json'), series)
+        session.set_c_graph(c_graph)
 
         _move_generated_files(session)
         _copy_ai_runtime_files(session)

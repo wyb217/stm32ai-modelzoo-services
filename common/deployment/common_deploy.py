@@ -47,94 +47,54 @@ def keep_internal_weights(path_network_data_params: str):
 def dispatch_weights(internalFlashSizeFlash_KB: str,
                      kernelFlash_KB: str,
                      applicationSizeFlash_KB: str,
-                     path_network_c_graph: str,
+                     path_network_c_info: str,
                      path_network_data_params: str):
 
-    with open(os.path.join(path_network_c_graph), 'r') as f:
+    with open(os.path.join(path_network_c_info), 'r') as f:
         graph = json.load(f)
 
-    if "network_c_graph" in path_network_c_graph:
-        # Sort weights from large weights to small ones
-        sorted_weights = dict(sorted(graph["weights"].items(), key=lambda item: item[1]['buffer_c_count'], reverse=True))
+    # Remove non-flash elements
+    for i in range(len(graph["memory_pools"])-1,0,-1):
+        element = graph["memory_pools"][i]
+        if element["rights"] != "ACC_READ":
+            graph["memory_pools"].remove(element)
 
-        internalFlashSize_inBytes = int(re.split('(\d+)', internalFlashSizeFlash_KB)[1])*10**3
-        kernel_flash_inBytes = int(re.split('(\d+)', kernelFlash_KB)[1])*10**3
-        application_size_flash_inBytes = int(re.split('(\d+)', applicationSizeFlash_KB)[1])*10**3
+    # Sort weights from large weights to small ones
+    sorted_weights = sorted(graph["memory_pools"], key=lambda item: item['used_size_bytes'], reverse=True)
 
-        freeInternalFlashSize =  internalFlashSize_inBytes - kernel_flash_inBytes - application_size_flash_inBytes
-        ExternalWeightArray = []
-        InternalWeightArray = []
-        for weight_name, detail in sorted_weights.items():
-            if (freeInternalFlashSize - detail["buffer_c_count"]*int(re.split('(\d+)', detail["buffer_c_type"])[1])/8) > 0:
-                bytes_number = int(re.split('(\d+)', detail["buffer_c_type"])[1])/8
-                # Can fit in Internal Flash
-                InternalWeightArray.append(detail["buffer_c_name_addr"])
-                # We fit the weights, reduce free size accordingly
-                freeInternalFlashSize = freeInternalFlashSize - (detail["buffer_c_count"]*bytes_number)
-            else:
-                # No free space in Internal Flash
-                ExternalWeightArray.append(detail["buffer_c_name_addr"])
+    internalFlashSize_inBytes = int(re.split('(\d+)', internalFlashSizeFlash_KB)[1])*10**3
+    kernel_flash_inBytes = int(re.split('(\d+)', kernelFlash_KB)[1])*10**3
+    application_size_flash_inBytes = int(re.split('(\d+)', applicationSizeFlash_KB)[1])*10**3
 
-        with open(path_network_data_params,'r') as f1,\
-            open(os.path.join(os.path.dirname(path_network_data_params), 'network_data_params_modify.c'),'w') as f2:
-            for lineNumber, line in enumerate(f1):
-                if line == '#include "network_data_params.h"\n':
-                    line = '#define AI_EXTERNAL_FLASH    __attribute__((section(".ExternalFlashSection")))\n\
+    freeInternalFlashSize =  internalFlashSize_inBytes - kernel_flash_inBytes - application_size_flash_inBytes
+    ExternalWeightArray = []
+    InternalWeightArray = []
+    for detail in sorted_weights:
+        if (freeInternalFlashSize - detail["used_size_bytes"]) > 0:
+            bytes_number = detail["used_size_bytes"]
+            # Can fit in Internal Flash
+            InternalWeightArray.append(detail["name"])
+            # We fit the weights, reduce free size accordingly
+            freeInternalFlashSize = freeInternalFlashSize - bytes_number
+        else:
+            # No free space in Internal Flash
+            ExternalWeightArray.append(detail["name"])
+
+    with open(path_network_data_params,'r') as f1,\
+        open(os.path.join(os.path.dirname(path_network_data_params), 'network_data_params_modify.c'),'w') as f2:
+        for lineNumber, line in enumerate(f1):
+            if line == '#include "network_data_params.h"\n':
+                line = '#define AI_EXTERNAL_FLASH    __attribute__((section(".ExternalFlashSection")))\n\
 #define AI_INTERNAL_FLASH    __attribute__((section(".InternalFlashSection")))\n' + line
-                re.findall("const ai_u(?:\d+) (.*)\[(?:\d+)\]", line)
-            # @Todo maybe remove tuple to test
-                weight = re.findall("const ai_u(?:\d+) (.*)\[(?:\d+)\]", line)
-                if weight != []:
-                    if weight[0] in InternalWeightArray:
-                        line = 'AI_INTERNAL_FLASH\n' + line
-                    elif weight[0] in ExternalWeightArray:
-                        line = 'AI_EXTERNAL_FLASH\n' + line
-                f2.write(line)
-        os.replace(os.path.join(os.path.dirname(path_network_data_params), 'network_data_params_modify.c'), path_network_data_params)
-
-    else:
-        # Remove non-flash elements
-        for i in range(len(graph["memory_pools"])-1,0,-1):
-            element = graph["memory_pools"][i]
-            if element["rights"] != "ACC_READ":
-                graph["memory_pools"].remove(element)
-
-        # Sort weights from large weights to small ones
-        sorted_weights = sorted(graph["memory_pools"], key=lambda item: item['used_size_bytes'], reverse=True)
-
-        internalFlashSize_inBytes = int(re.split('(\d+)', internalFlashSizeFlash_KB)[1])*10**3
-        kernel_flash_inBytes = int(re.split('(\d+)', kernelFlash_KB)[1])*10**3
-        application_size_flash_inBytes = int(re.split('(\d+)', applicationSizeFlash_KB)[1])*10**3
-
-        freeInternalFlashSize =  internalFlashSize_inBytes - kernel_flash_inBytes - application_size_flash_inBytes
-        ExternalWeightArray = []
-        InternalWeightArray = []
-        for detail in sorted_weights:
-            if (freeInternalFlashSize - detail["used_size_bytes"]) > 0:
-                bytes_number = detail["used_size_bytes"]
-                # Can fit in Internal Flash
-                InternalWeightArray.append(detail["name"])
-                # We fit the weights, reduce free size accordingly
-                freeInternalFlashSize = freeInternalFlashSize - bytes_number
-            else:
-                # No free space in Internal Flash
-                ExternalWeightArray.append(detail["name"])
-
-        with open(path_network_data_params,'r') as f1,\
-            open(os.path.join(os.path.dirname(path_network_data_params), 'network_data_params_modify.c'),'w') as f2:
-            for lineNumber, line in enumerate(f1):
-                if line == '#include "network_data_params.h"\n':
-                    line = '#define AI_EXTERNAL_FLASH    __attribute__((section(".ExternalFlashSection")))\n\
-#define AI_INTERNAL_FLASH    __attribute__((section(".InternalFlashSection")))\n' + line
-            # @Todo maybe remove tuple to test
-                weight = re.findall("const ai_u(?:\d+) \D_network_(.*)_\D(?:\d+)\[(?:\d+)\]", line)
-                if weight != []:
-                    if weight[0] in InternalWeightArray:
-                        line = 'AI_INTERNAL_FLASH\n' + line
-                    elif weight[0] in ExternalWeightArray:
-                        line = 'AI_EXTERNAL_FLASH\n' + line
-                f2.write(line)
-        os.replace(os.path.join(os.path.dirname(path_network_data_params), 'network_data_params_modify.c'), path_network_data_params)
+        # @Todo maybe remove tuple to test
+            weight = re.findall("const ai_u(?:\d+) \D_network_(.*)_\D(?:\d+)\[(?:\d+)\]", line)
+            if weight != []:
+                if weight[0] in InternalWeightArray:
+                    line = 'AI_INTERNAL_FLASH\n' + line
+                elif weight[0] in ExternalWeightArray:
+                    line = 'AI_EXTERNAL_FLASH\n' + line
+            f2.write(line)
+    os.replace(os.path.join(os.path.dirname(path_network_data_params), 'network_data_params_modify.c'), path_network_data_params)
 
 
 def stm32ai_deploy(target: bool = False,
@@ -273,12 +233,9 @@ def stm32ai_deploy(target: bool = False,
             else:
                 stmaic.compile(session=session, options=opt)
 
-            if os.path.isfile(os.path.join(session.workspace, "network_c_info.json")):
-                path_network_c_graph = os.path.join(session.workspace, "network_c_info.json")
-            else:
-                path_network_c_graph = os.path.join(session.workspace, "network_c_graph.json")
+            path_network_c_info = os.path.join(session.workspace, "network_c_info.json")
 
-            update_activation_c_code(c_project_path, path_network_c_graph=path_network_c_graph, available_AXIRAM=available_default_ram, cfg=cfg, custom_objects=custom_objects)
+            update_activation_c_code(c_project_path, path_network_c_info=path_network_c_info, available_AXIRAM=available_default_ram, cfg=cfg, custom_objects=custom_objects)
 
             if split_weights:
                 print("[INFO] : Dispatch weights between internal and external flash to fit the large model")
@@ -287,7 +244,7 @@ def stm32ai_deploy(target: bool = False,
                 dispatch_weights(internalFlashSizeFlash_KB=board.config.internalFlash_size,
                                  kernelFlash_KB=board.config.lib_size,
                                  applicationSizeFlash_KB=board.config.application_size,
-                                 path_network_c_graph=path_network_c_graph,
+                                 path_network_c_info=path_network_c_info,
                                  path_network_data_params=os.path.join(session.generated_dir, "network_data_params.c"))
             else:
                 print("[INFO] : Weights fit in internal flash")
@@ -365,20 +322,17 @@ def stm32ai_deploy(target: bool = False,
                                             splitWeights=split_weights, target_info=memory_pool_path,
                                             includeLibraryForIde=CliLibraryIde(stm32ai_ide.lower())))
 
-                if os.path.isfile(os.path.join(session.workspace, "network_c_info.json")):
-                    path_network_c_graph = os.path.join(session.workspace, "network_c_info.json")
-                else:
-                    path_network_c_graph = os.path.join(session.generated_dir, "network_c_graph.json")
+                path_network_c_info = os.path.join(session.generated_dir, "network_c_info.json")
 
                 # update activations buffers in case it has been modified in former deploy
-                update_activation_c_code(c_project_path, path_network_c_graph=path_network_c_graph, available_AXIRAM=available_default_ram, cfg=cfg, custom_objects=custom_objects)
+                update_activation_c_code(c_project_path, path_network_c_info=path_network_c_info, available_AXIRAM=available_default_ram, cfg=cfg, custom_objects=custom_objects)
 
                 if split_weights:
                     # @Todo check if fits as well in external and not too large for external as well
                     dispatch_weights(internalFlashSizeFlash_KB=board.config.internalFlash_size,
                                     kernelFlash_KB=board.config.lib_size,
                                     applicationSizeFlash_KB="10KB",
-                                    path_network_c_graph=path_network_c_graph,
+                                    path_network_c_info=path_network_c_info,
                                     path_network_data_params=os.path.join(stm32ai_output, "network_data_params.c"))
                 else:
                     print("[INFO] : Weights fit in internal flash")

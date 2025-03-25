@@ -116,7 +116,7 @@ Please find below some tutorials for a quick ramp up!
 * [How can I fine tune a pretrained model on my own dataset?](./image_classification/deployment/doc/tuto/how_to_finetune_a_model_zoo_model_on_my_own_dataset.md)
 * [How can I check the accuracy after quantization of my model?](./image_classification/deployment/doc/tuto/how_to_compare_the_accuracy_after_quantization_of_my_model.md)
 * [How can I quickly check the performance of my model using the dev cloud?](./image_classification/deployment/doc/tuto/how_to_quickly_benchmark_the_performances_of_a_model.md)
-
+* [How can I evaluate my model on STM32N6 target?](./image_classification/deployment/doc/tuto/how_to_evaluate_my_model_on_stm32n6_target.md)
 
 Image Classification top readme **[here](./image_classification/README.md)**
 
@@ -137,7 +137,7 @@ Object detection is used to detect, locate and estimate the occurrences probabil
 | [SSD MobileNet v2 fpn lite 1.0](https://github.com/STMicroelectronics/stm32ai-modelzoo/blob/master/object_detection/ssd_mobilenet_v2_fpnlite/README.md)   |  256x256x3<br> 416x416x3   | Full OD Services      |  [STM32MP257F-EV1](./application_code/object_detection/STM32MP-LINUX/STM32MP2/README.md) <br> [STM32N6570-DK](https://www.st.com/en/development-tools/stm32n6-ai.html)<br>     |
 | [ST Yolo LC v1](https://github.com/STMicroelectronics/stm32ai-modelzoo/blob/master/object_detection/st_yolo_lc_v1/README.md)   |  192x192x3<br> 224x224x3<br> 256x256x3<br>  | Full OD Services      | [STM32H747I-DISCO](application_code/object_detection/STM32H7/Application/STM32H747I-DISCO) with B-CAMS-OMV camera daughter board<br>  |
 | [Tiny Yolo v2](https://github.com/STMicroelectronics/stm32ai-modelzoo/blob/master/object_detection/tiny_yolo_v2/README.md)   |  224x224x3<br> 416x416x3<br>  | Full OD Services      | [STM32N6570-DK](https://www.st.com/en/development-tools/stm32n6-ai.html)<br>     |
-| [ST Yolo X](https://github.com/STMicroelectronics/stm32ai-modelzoo/blob/master/object_detection/st_yolo_x/README.md)   |  256x256x3<br> 416x416x3<br>  | Full OD Services      | [STM32N6570-DK](https://www.st.com/en/development-tools/stm32n6-ai.html)<br>     |
+| [ST Yolo X](https://github.com/STMicroelectronics/stm32ai-modelzoo/blob/master/object_detection/st_yolo_x/README.md)   |  256x256x3<br> 320x320x3<br> 416x416x3<br>  480x480x3<br> | Full OD Services      | [STM32N6570-DK](https://www.st.com/en/development-tools/stm32n6-ai.html)<br>     |
 | [Yolo v8](https://github.com/stm32-hotspot/ultralytics/tree/main/examples/YOLOv8-STEdgeAI/stedgeai_models/object_detection) <br> Yolo v5u  |  192x192x3<br> 256x256x3<br> 320x320x3<br> 416x416x3<br>  | Evaluation / Benchmarking / Prediction / Deployment    | [STM32N6570-DK](https://www.st.com/en/development-tools/stm32n6-ai.html)<br>     |
 
 
@@ -157,6 +157,7 @@ Please find below some tutorials for a quick ramp up!
 * [How can I check the accuracy after quantization of my model?](./object_detection/deployment/doc/tuto/how_to_compare_the_accuracy_after_quantization_of_my_model.md)
 * [How can I quickly check the performance of my model using the dev cloud?](./object_detection/deployment/doc/tuto/how_to_quickly_benchmark_the_performances_of_a_model.md)
 * [How can I quantize, evaluate and deploy an Ultralytics Yolov8 model?](./object_detection/deployment/doc/tuto/How_to_deploy_yolov8_yolov5_object_detection.md)
+* [How can I evaluate my model on STM32N6 target?](./object_detection/deployment/doc/tuto/how_to_evaluate_my_model_on_stm32n6_target.md)
 
 Object Detection top readme **[here](./object_detection/README.md)**
 
@@ -194,6 +195,7 @@ Please find below some tutorials for a quick ramp up!
 * [How can I check the accuracy after quantization of my model?](./pose_estimation/deployment/doc/tuto/how_to_compare_the_accuracy_after_quantization_of_my_model.md)
 * [How can I quickly check the performance of my model using the dev cloud?](./pose_estimation/deployment/doc/tuto/how_to_quickly_benchmark_the_performances_of_a_model.md)
 * [How can I deploy an Ultralytics Yolov8 pose estimation model?](./pose_estimation/deployment/doc/tuto/How_to_deploy_yolov8_pose_estimation.md)
+* [How can I evaluate my model on STM32N6 target?](./pose_estimation/deployment/doc/tuto/how_to_evaluate_my_model_on_stm32n6_target.md)
 
 Pose Estimation top readme **[here](./pose_estimation/README.md)**
 
@@ -227,6 +229,7 @@ Please find below some tutorials for a quick ramp up!
 * [How can I fine tune a pretrained model on my own dataset?](./semantic_segmentation/deployment/doc/tuto/how_to_finetune_a_model_zoo_model_on_my_own_dataset.md)
 * [How can I check the accuracy after quantization of my model?](./semantic_segmentation/deployment/doc/tuto/how_to_compare_the_accuracy_after_quantization_of_my_model.md)
 * [How can I quickly check the performance of my model using the dev cloud?](./semantic_segmentation/deployment/doc/tuto/how_to_quickly_benchmark_the_performances_of_a_model.md)
+* [How can I evaluate my model on STM32N6 target?](./semantic_segmentation/deployment/doc/tuto/how_to_evaluate_my_model_on_stm32n6_target.md)
 
 Semantic Segmentation top readme **[here](./semantic_segmentation/README.md)**
 
@@ -286,6 +289,7 @@ Please find below some tutorials for a quick ramp up!
 * [How can I evaluate my model before and after quantization?](./audio_event_detection/deployment/doc/tuto/how_to_compare_the_accuracy_after_quantization_of_my_model.md)
 * [How can I quickly check the performance of my model using the dev cloud?](./audio_event_detection/deployment/doc/tuto/how_to_quickly_benchmark_the_performances_of_a_model.md)
 * [How can I deploy my model?](./audio_event_detection/deployment/doc/tuto/how_to_deploy_a_model_on_a_target.md)
+* [How can I evaluate my model on STM32N6 target?](./audio_event_detection/deployment/doc/tuto/how_to_evaluate_my_model_on_stm32n6_target.md)
 
 Audio Event Detection top readme **[here](./audio_event_detection/README.md)**
 

@@ -1,0 +1,26 @@
+general:
+  model_path: ../../stm32ai-modelzoo/object_detection/st_yolo_x/ST_pretrainedmodel_public_dataset/coco_2017_person/st_yolo_x_nano_192/st_yolo_x_nano_192_0.33_0.25_int8.tflite
+  config_path: ../../stm32ai-modelzoo/object_detection/st_yolo_x/ST_pretrainedmodel_public_dataset/coco_2017_person/st_yolo_x_nano_192/st_yolo_x_nano_192_0.33_0.25_config.yaml
+  dataset_path: ../../stm32ai-modelzoo-services/object_detection/datasets/coco_2017_person
+
+parameters:
+  profile: profile_O3
+  input_type: uint8     # int8 / uint8 / float32
+  output_type: int8     # int8 / uint8 / float32
+  input_chpos: chlast   # chlast / chfirst
+  output_chpos: chlast  # chlast / chfirst
+  evaluation_target: host # host, stedgeai_host, stedgeai_n6
+
+tools:
+   stedgeai:
+      path_to_stedgeai: C:/ST/STEdgeAI_Core/2.0/Utilities/windows/stedgeai.exe
+      path_to_loader: C:/ST/STEdgeAI_Core/2.0/scripts/N6_scripts/n6_loader.py
+
+hydra:
+  verbose: false
+  job_logging:
+    level: ERROR
+  output_subdir: null
+  run:
+    dir: ./experiments_outputs
+    

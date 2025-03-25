@@ -39,5 +39,6 @@ Don't forget to follow our tuto below for a quick ramp up :
 * [How can I evaluate my model before and after quantization?](../audio_event_detection/deployment/doc/tuto/how_to_compare_the_accuracy_after_quantization_of_my_model.md)
 * [How can I quickly check the performance of my model using the dev cloud?](../audio_event_detection/deployment/doc/tuto/how_to_quickly_benchmark_the_performances_of_a_model.md)
 * [How can I deploy my model?](../audio_event_detection/deployment/doc/tuto/how_to_deploy_a_model_on_a_target.md)
+* [How can I evaluate my model on STM32N6 target?](../audio_event_detection/deployment/doc/tuto/how_to_evaluate_my_model_on_stm32n6_target.md)
 
 Remember that minimalistic yaml files are available [here](./src/config_file_examples/) to play with specific services, and that all pre-trained models in the [STM32 model zoo](https://github.com/STMicroelectronics/stm32ai-modelzoo/) are provided with their configuration .yaml file used to generate them. These are very good starting points to start playing with!

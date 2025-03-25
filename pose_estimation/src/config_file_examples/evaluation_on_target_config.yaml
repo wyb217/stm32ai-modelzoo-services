@@ -1,0 +1,26 @@
+general:
+  model_path: ../../stm32ai-modelzoo/pose_estimation/movenet/ST_pretrainedmodel_public_dataset/custom_dataset_person_13kpts/st_movenet_lightning_heatmaps_192/st_movenet_lightning_heatmaps_192_int8_pc.tflite 
+  config_path: ../../stm32ai-modelzoo/pose_estimation/movenet/ST_pretrainedmodel_public_dataset/custom_dataset_person_13kpts/st_movenet_lightning_heatmaps_192/st_movenet_lightning_heatmaps_192_config.yaml
+  dataset_path: ../../stm32ai-modelzoo-services/pose_estimation/datasets/coco2017_single_13kpts
+
+parameters:
+  profile: profile_O3
+  input_type: uint8     # int8 / uint8 / float32
+  output_type: int8     # int8 / uint8 / float32
+  input_chpos: chlast   # chlast / chfirst
+  output_chpos: chlast  # chlast / chfirst
+  evaluation_target: stedgeai_n6 # host, stedgeai_host, stedgeai_n6
+
+tools:
+   stedgeai:
+      path_to_stedgeai: C:/ST/STEdgeAI_Core/2.0/Utilities/windows/stedgeai.exe
+      path_to_loader: C:/ST/STEdgeAI_Core/2.0/scripts/N6_scripts/n6_loader.py
+
+hydra:
+  verbose: false
+  job_logging:
+    level: ERROR
+  output_subdir: null
+  run:
+    dir: ./experiments_outputs
+    

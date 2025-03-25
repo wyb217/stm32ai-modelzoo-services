@@ -50,5 +50,6 @@ Don't forget to follow our tuto below for a quick ramp up :
 * [How can I check the accuracy after quantization of my model?](../pose_estimation/deployment/doc/tuto/how_to_compare_the_accuracy_after_quantization_of_my_model.md)
 * [How can I quickly check the performance of my model using the dev cloud?](../pose_estimation/deployment/doc/tuto/how_to_quickly_benchmark_the_performances_of_a_model.md)
 * [How can I deploy an Ultralytics Yolov8 pose estimation model?](../pose_estimation/deployment/doc/tuto/How_to_deploy_yolov8_pose_estimation.md)
+* [How can I evaluate my model on STM32N6 target?](../pose_estimation/deployment/doc/tuto/how_to_evaluate_my_model_on_stm32n6_target.md)
 
 Remember that minimalistic yaml files are available [here](./src/config_file_examples/) to play with specific services, and that all pre-trained models in the [STM32 model zoo](https://github.com/STMicroelectronics/stm32ai-modelzoo/) are provided with their configuration .yaml file used to generate them. These are very good starting points to start playing with!

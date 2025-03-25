@@ -1,0 +1,27 @@
+general:
+  model_path: ../../stm32ai-modelzoo/audio_event_detection/yamnet/ST_pretrainedmodel_public_dataset/esc10/yamnet_1024_64x96_tl/yamnet_1024_64x96_tl_qdq_int8.onnx 
+  config_path: ../../stm32ai-modelzoo/audio_event_detection/yamnet/ST_pretrainedmodel_public_dataset/esc10/yamnet_1024_64x96_tl/yamnet_1024_64x96_tl.yaml 
+  training_audio_path: ../../stm32ai-modelzoo-services/audio_event_detection/datasets/ESC-50-master/audio
+  training_csv_path: ../../stm32ai-modelzoo-services/audio_event_detection/datasets/ESC-50-master/meta/esc50.csv
+
+parameters:
+  profile: profile_O3
+  input_type: int8     # int8 / uint8 / float32
+  output_type: float32    # int8 / uint8 / float32
+  input_chpos: chfirst    # chlast / chfirst
+  output_chpos: chfirst   # chlast / chfirst
+  evaluation_target: stedgeai_n6 # host, stedgeai_host, stedgeai_n6
+
+tools:
+   stedgeai:
+      path_to_stedgeai: C:/ST/STEdgeAI_Core/2.0/Utilities/windows/stedgeai.exe
+      path_to_loader: C:/ST/STEdgeAI_Core/2.0/scripts/N6_scripts/n6_loader.py
+
+hydra:
+  verbose: false
+  job_logging:
+    level: ERROR
+  output_subdir: null
+  run:
+    dir: ./experiments_outputs
+    
