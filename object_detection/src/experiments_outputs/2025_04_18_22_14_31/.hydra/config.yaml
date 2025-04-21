@@ -1,0 +1,37 @@
+general:
+  model_path: yolov8n_256_quant_pc_uf_od_coco-person-st.tflite
+  model_type: yolo_v8
+  num_threads_tflite: 8
+operation_mode: prediction
+dataset:
+  class_names:
+  - person
+  test_path: D:\code\stm32ai-modelzoo-services\object_detection\datasets\val2017\
+preprocessing:
+  rescaling:
+    scale: 1/255
+    offset: 0
+  resizing:
+    aspect_ratio: fit
+    interpolation: nearest
+  color_mode: rgb
+prediction:
+  target: host
+  test_files_path: D:\code\stm32ai-modelzoo-services\object_detection\datasets\val2017\
+postprocessing:
+  confidence_thresh: 0.1
+  NMS_thresh: 0.45
+  IoU_eval_thresh: 0.4
+  plot_metrics: true
+  max_detection_boxes: 100
+tools:
+  stedgeai:
+    version: 10.0.0
+    optimization: balanced
+    on_cloud: true
+    path_to_stedgeai: C:/Users/<XXXXX>/STM32Cube/Repository/Packs/STMicroelectronics/X-CUBE-AI/<*.*.*>/Utilities/windows/stedgeai.exe
+  path_to_cubeIDE: C:/ST/STM32CubeIDE_<*.*.*>/STM32CubeIDE/stm32cubeide.exe
+benchmarking:
+  board: STM32H747I-DISCO
+mlflow:
+  uri: ./experiments_outputs/mlruns

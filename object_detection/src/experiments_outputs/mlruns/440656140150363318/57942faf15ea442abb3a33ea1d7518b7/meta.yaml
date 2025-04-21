@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/code/stm32ai-modelzoo-services/object_detection/src/experiments_outputs/mlruns/440656140150363318/57942faf15ea442abb3a33ea1d7518b7/artifacts
+end_time: 1744773616957
+entry_point_name: ''
+experiment_id: '440656140150363318'
+lifecycle_stage: active
+run_id: 57942faf15ea442abb3a33ea1d7518b7
+run_name: '2025_04_16_11_20_05'
+run_uuid: 57942faf15ea442abb3a33ea1d7518b7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744773606032
+status: 3
+tags: []
+user_id: '18387'

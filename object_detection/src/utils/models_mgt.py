@@ -6,7 +6,9 @@
 #  * the root directory of this software component.
 #  * If no LICENSE file comes with this software, it is provided AS-IS.
 #  *--------------------------------------------------------------------------------------------*/
-
+import sys
+sys.path.append(r"D:\code\stm32ai-modelzoo-services\common\utils")
+sys.path.append(r"D:\code\stm32ai-modelzoo-services\object_detection\src\models")
 import os
 from pathlib import Path
 import tensorflow as tf

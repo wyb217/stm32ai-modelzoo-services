@@ -6,7 +6,12 @@
 #  * the root directory of this software component.
 #  * If no LICENSE file comes with this software, it is provided AS-IS.
 #  *--------------------------------------------------------------------------------------------*/
-
+import sys
+sys.path.append(r"D:\code\stm32ai-modelzoo-services\object_detection\src\utils")
+sys.path.append(r"D:\code\stm32ai-modelzoo-services\object_detection\src\preprocessing")
+sys.path.append(r"D:\code\stm32ai-modelzoo-services\object_detection\src\postprocessing")
+sys.path.append(r"D:\code\stm32ai-modelzoo-services\common")
+sys.path.append(r"D:\code\stm32ai-modelzoo-services\common\utils")
 import os
 from tabulate import tabulate
 from keras.utils.layer_utils import count_params

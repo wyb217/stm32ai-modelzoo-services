@@ -14,6 +14,8 @@ from omegaconf import OmegaConf, DictConfig
 from munch import DefaultMunch
 import numpy as np
 from hydra.core.hydra_config import HydraConfig
+import sys
+sys.path.append(r"D:\code\stm32ai-modelzoo-services\common\utils")
 
 from cfg_utils import postprocess_config_dict, check_config_attributes, parse_tools_section, parse_benchmarking_section, \
                       parse_mlflow_section, parse_top_level, parse_general_section, parse_quantization_section, \

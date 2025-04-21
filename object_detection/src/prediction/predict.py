@@ -6,6 +6,11 @@
 #  * If no LICENSE file comes with this software, it is provided AS-IS.
 #  *--------------------------------------------------------------------------------------------*/
 
+import sys
+sys.path.append(r"D:\code\stm32ai-modelzoo-services\object_detection\src\utils")
+sys.path.append(r"D:\code\stm32ai-modelzoo-services\object_detection\src\preprocessing")
+sys.path.append(r"D:\code\stm32ai-modelzoo-services\object_detection\src\postprocessing")
+sys.path.append(r"D:\code\stm32ai-modelzoo-services\common\data_augmentation")
 import os
 import numpy as np
 from pathlib import Path

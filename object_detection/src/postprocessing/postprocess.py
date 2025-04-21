@@ -5,7 +5,8 @@
 #  * the root directory of this software component.
 #  * If no LICENSE file comes with this software, it is provided AS-IS.
 #  *--------------------------------------------------------------------------------------------*/
-
+import sys
+sys.path.append(r"D:\code\stm32ai-modelzoo-services\object_detection\src\utils")
 import numpy as np
 import tensorflow as tf
 from bounding_boxes_utils import bbox_center_to_corners_coords

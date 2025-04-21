@@ -1,0 +1,10 @@
+{
+    "python.analysis.extraPaths": [
+        "./hand_posture/src/utils",
+        "./common/utils",
+        "./object_detection/src/postprocessing",
+        "./object_detection/src/utils",
+        "./object_detection/src/data_augmentation/objdet_",
+        "./common/data_augmentation"
+    ]
+}
